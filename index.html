@@ -313,7 +313,6 @@
   #tab-resumen:checked ~ #panel-resumen{ display:block; }
   #tab-s1:checked ~ #panel-s1{ display:block; }
   #tab-s2:checked ~ #panel-s2{ display:block; }
-  #tab-pec:checked ~ #panel-pec{ display:block; }
 
   .tab-bar{
     position:sticky; top:0; z-index:200;
@@ -333,8 +332,7 @@
 
   #tab-resumen:checked ~ .tab-bar label[for="tab-resumen"],
   #tab-s1:checked ~ .tab-bar label[for="tab-s1"],
-  #tab-s2:checked ~ .tab-bar label[for="tab-s2"],
-  #tab-pec:checked ~ .tab-bar label[for="tab-pec"]{
+  #tab-s2:checked ~ .tab-bar label[for="tab-s2"]{
     background:var(--gold-600); color:#1a1200;
   }
 
@@ -343,6 +341,66 @@
     .tab-bar label{ padding:9px 14px; font-size:12.5px; white-space:nowrap; }
   }
 
+
+  /* ============ SELECTOR DE CU ============ */
+  .sel-card{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px 30px; box-shadow:0 20px 40px -28px rgba(20,35,55,.25); }
+  .sel-group{ margin-bottom:16px; }
+  .sel-group .gl{ font-size:12.5px; font-weight:800; color:var(--ink-500); letter-spacing:.06em; text-transform:uppercase; margin-bottom:9px; }
+  .sel-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{ font-family:var(--font-body); font-size:15px; font-weight:700; padding:10px 19px; border-radius:999px; border:1.5px solid #ecd78f; background:#fbf0c8; color:#5a4915; cursor:pointer; transition:background .15s ease, color .15s ease, border-color .15s ease; }
+  .chip:hover{ background:#f6e4a6; border-color:#e2c76f; color:#4a3b0d; }
+  .chip.on{ background:var(--blue-600); border-color:var(--blue-600); color:#fff; box-shadow:0 6px 14px -8px rgba(47,111,237,.7); }
+  .chip:focus-visible{ outline:3px solid rgba(47,111,237,.35); outline-offset:2px; }
+  .sel-note{ font-size:13.5px; color:var(--ink-500); line-height:1.6; margin-top:4px; }
+  .sel-body{ display:grid; grid-template-columns:300px minmax(0,1fr); gap:34px; align-items:start; margin-top:24px; padding-top:26px; border-top:2px solid var(--line); }
+  .sel-kpi{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; }
+  .sel-kpi .donut-label .num{ font-size:36px; }
+  .sel-name{ font-family:var(--font-display); font-size:25px; font-weight:700; color:var(--navy-900); line-height:1.25; }
+  .sel-kpi .sub{ font-size:15.5px; color:var(--ink-700); line-height:1.65; }
+  .sel-kpi .sub b{ color:var(--ink-900); }
+  .sel-table-wrap{ overflow-x:auto; border:1px solid var(--line); border-radius:12px; }
+  .sel-table{ width:100%; min-width:0; border-collapse:collapse; font-size:15px; }
+  .sel-table thead th{ background:var(--navy-800); color:#fff; font-weight:800; padding:12px 10px; text-align:right; white-space:normal; line-height:1.25; }
+  .sel-table thead th:first-child{ text-align:center; }
+  .sel-table td{ padding:9px 10px; text-align:right; border-bottom:1px solid var(--line); font-weight:600; color:var(--ink-700); white-space:nowrap; }
+  .sel-table td:first-child{ text-align:left; padding-left:20px; white-space:normal; min-width:200px; }
+  .sel-table tr.hd td{ background:#fff; font-weight:800; color:var(--navy-900); padding-left:14px; }
+  .sel-table tr.st td{ background:#dce8f7; font-weight:800; color:var(--navy-900); padding-left:14px; }
+  .sel-table tr.tt td{ background:var(--navy-900); color:#fff; font-weight:800; padding-left:14px; border-bottom:none; }
+  @media (max-width:980px){ .sel-body{ grid-template-columns:1fr; gap:24px; } .sel-card{ padding:22px 18px; } }
+
+  .chart-sel{ font-family:var(--font-display); font-size:22px; font-weight:800; color:var(--navy-900); text-align:center; margin:-6px 0 14px; }
+
+  /* ---- letra un poco más grande en los tableros ---- */
+  @media (min-width:981px){
+    .kpi-title{ font-size:17px; }
+    .kpi-foot{ font-size:17.5px; max-width:640px; }
+    .donut-label .num{ font-size:42px; }
+    .donut-label .tag{ font-size:14px; }
+    .donut-lg .num{ font-size:38px; }
+    .kt-name, .kt-pct, .kt-val{ font-size:15px; }
+    .section-head .desc{ font-size:16px; max-width:360px; }
+    .card h3{ font-size:22px; }
+    .card li{ font-size:15.5px; }
+    .bc-label{ font-size:14px; max-width:150px; }
+    .bc-val{ font-size:12px; top:-21px; }
+    .bc-badge{ font-size:14.5px; }
+    .barchart .gridline .gl-label{ font-size:12px; }
+    .chart-legend span{ font-size:13.5px; }
+  }
+
+  /* ---- tabla ancha (estructura Cursos / Pecuniarios) ---- */
+  table.wide{ min-width:1400px; }
+  thead tr.band th{ background:var(--navy-900); color:var(--gold-600); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:6px 3px; text-align:center; border-right:1px solid rgba(255,255,255,.12); }
+  thead tr.grp th.stot, thead tr.sub th.stot{ background:#2c5590; }
+  thead tr.grp th.tot{ background:var(--gold-600); color:#1a1200; }
+  thead tr.sub th.tot{ background:#f3b93a; color:#1a1200; }
+  tbody td.stot{ background:#e8effc; font-weight:800; color:var(--navy-900); }
+  td.sb{ font-weight:800; }
+  table.wide tbody td:first-child, table.wide thead th:first-child{ position:sticky; left:0; z-index:2; min-width:150px; box-shadow:1px 0 0 var(--line); }
+  table.wide tbody td:first-child{ background:var(--card); }
+  table.wide tbody tr.total td:first-child{ background:var(--navy-900); color:#fff; }
+  table.wide tbody tr.region td:first-child{ background:#eef2fb; color:var(--navy-900); }
 </style>
 </head>
 <body>
@@ -350,13 +408,11 @@
 <input type="radio" name="tabs" id="tab-resumen" class="tab-radio" checked>
 <input type="radio" name="tabs" id="tab-s1" class="tab-radio">
 <input type="radio" name="tabs" id="tab-s2" class="tab-radio">
-<input type="radio" name="tabs" id="tab-pec" class="tab-radio">
 
 <nav class="tab-bar">
   <label for="tab-resumen">Resumen general</label>
   <label for="tab-s1">I Semestre 2026</label>
   <label for="tab-s2">II Semestre 2026</label>
-  <label for="tab-pec">Otros Pecuniarios</label>
 </nav>
 
 <div class="panel" id="panel-resumen">
@@ -365,8 +421,8 @@
     <div class="eyebrow">Sede Cundinamarca Boyacá</div>
     <h1>Otros ingresos operacionales S1 - S2 año 2026</h1>
     <div class="meta-row" style="margin-top:28px;">
-      <div class="item"><div class="label">Corte de datos</div><div class="value">9/ 11 / 2026</div></div>
-      <div class="item"><div class="label">Líneas de ingreso</div><div class="value">7 categorías</div></div>
+      <div class="item"><div class="label">Corte de datos</div><div class="value">12 / 11 / 2026</div></div>
+      <div class="item"><div class="label">Líneas de ingreso</div><div class="value">6 categorías</div></div>
     </div>
   </div>
 </header>
@@ -378,68 +434,13 @@
 
       <div class="kpi-card">
         <div class="kpi-visual">
-          <div class="donut" style="background:conic-gradient(var(--blue-600) 0% 85.79%, #e7ecf5 85.79% 100%);">
-            <div class="donut-label"><span class="num">85,8%</span><span class="tag">de la meta</span></div>
+          <div class="donut" style="background:conic-gradient(var(--blue-600) 0% 87.06%, #e7ecf5 87.06% 100%);">
+            <div class="donut-label"><span class="num">87,1%</span><span class="tag">de la meta</span></div>
           </div>
         </div>
         <div class="kpi-content">
           <div class="kpi-title">Cumplimiento general acumulado</div>
-          <div class="kpi-foot">Real <b>$6.356,9M</b> de meta <b>$7.409,5M</b> · faltan <b>$1.052,6M</b> para alcanzar la meta anual.</div>
-        </div>
-      </div>
-
-      <div class="kpi-card kpi-card-wide">
-        <div class="kpi-visual">
-          <div class="donut donut-lg" style="background:conic-gradient(
-              var(--teal-600) 0.00% 5.07%,
-              var(--green-600) 5.07% 33.71%,
-              var(--gold-600) 33.71% 37.75%,
-              var(--blue-600) 37.75% 61.35%,
-              #64748b 61.35% 72.67%,
-              var(--purple-600) 72.67% 93.28%,
-              var(--coral-600) 93.28% 100.00%);">
-            <div class="donut-label"><span class="num">7</span><span class="tag">categorías</span></div>
-          </div>
-        </div>
-        <div class="kpi-content">
-          <div class="kpi-title">Ingresos por categoría — % de cumplimiento y valor real (acumulado)</div>
-          <div class="kpi-rows">
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--teal-600)"></i>Cursos coterminales</span>
-              <span class="kt-pct">234,9%</span>
-              <span class="kt-val">$322,2M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--green-600)"></i>Derechos de grado</span>
-              <span class="kt-pct">157,0%</span>
-              <span class="kt-val">$1.820,4M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--gold-600)"></i>Intersemestrales</span>
-              <span class="kt-pct">107,5%</span>
-              <span class="kt-val">$257,4M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--blue-600)"></i>Diplomados opción de grado</span>
-              <span class="kt-pct">104,6%</span>
-              <span class="kt-val">$1.500,1M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:#64748b"></i>Otros pecuniarios</span>
-              <span class="kt-pct">85,8%</span>
-              <span class="kt-val">$719,7M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--purple-600)"></i>Educación Continua</span>
-              <span class="kt-pct">62,4%</span>
-              <span class="kt-val">$1.309,7M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--coral-600)"></i>Ingresos por proyectos</span>
-              <span class="kt-pct">28,5%</span>
-              <span class="kt-val">$427,4M</span>
-            </div>
-          </div>
+          <div class="kpi-foot">Real <b>$6.369,7M</b> de meta <b>$7.316,5M</b> · faltan <b>$946,8M</b> para alcanzar la meta anual.</div>
         </div>
       </div>
 
@@ -449,79 +450,102 @@
 
 <main>
 
+  <section class="section alt" id="selector-resumen">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">01 — <span>Selector de CU</span></div>
+          <h2>Consulta por Centro Universitario</h2>
+        </div>
+        <div class="desc">Selecciona un CU para ver su cumplimiento y el detalle por concepto (meta, real y % de cumplimiento). Acumulado I + II Semestre 2026.</div>
+      </div>
+
+      <div class="sel-card" id="sel-resumen">
+        <div class="sel-group"><div class="gl">Sede y regionales</div><div class="sel-chips"><button type="button" class="chip on" data-k="Total" aria-pressed="true">Total Sede</button><button type="button" class="chip" data-k="Cundinamarca" aria-pressed="false">Cundinamarca</button><button type="button" class="chip" data-k="Boyacá" aria-pressed="false">Boyacá</button></div></div>
+        <div class="sel-group"><div class="gl">Centros universitarios (CU)</div><div class="sel-chips"><button type="button" class="chip" data-k="Soacha" aria-pressed="false">Soacha</button><button type="button" class="chip" data-k="Zipaquirá" aria-pressed="false">Zipaquirá</button><button type="button" class="chip" data-k="Girardot" aria-pressed="false">Girardot</button><button type="button" class="chip" data-k="Madrid" aria-pressed="false">Madrid</button><button type="button" class="chip" data-k="Duitama" aria-pressed="false">Duitama</button><button type="button" class="chip" data-k="Chiquinquirá" aria-pressed="false">Chiquinquirá</button></div></div>
+        <div class="sel-note">Los CT están sumados a su CU: Soacha incluye Fusagasugá; Zipaquirá incluye Ubaté; Girardot incluye La Mesa; Madrid incluye Funza, Facatativá y Villeta; Chiquinquirá incluye Puerto Boyacá.</div>
+        <div class="sel-body">
+          <div class="sel-kpi">
+            <div class="donut"><div class="donut-label"><span class="num" data-f="pct">—</span><span class="tag">de la meta</span></div></div>
+            <div class="sel-name" data-f="name"></div>
+            <div class="sub" data-f="sub"></div>
+          </div>
+          <div class="sel-table-wrap">
+            <table class="sel-table">
+              <thead><tr><th>Concepto</th><th>Real Total</th><th>Meta Total</th><th>% Cumpl.</th><th>Falta para la meta</th></tr></thead>
+              <tbody data-f="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <script type="application/json" class="sel-data">{"struct":[["Cursos",[["OIES","Otros ingresos de educación superior"],["EC","Educación Continua"],["FPT","Formación para el Trabajo"]]],["Pecuniarios",[["PRO","Ingresos por proyectos"],["DG","Derechos de grado"],["OP","Otros pecuniarios"]]]],"places":[{"k":"Total","label":"Total Sede Cundinamarca Boyacá","kind":"sede","v":{"OIES":[2082.36868,1811.06108],"EC":[1309.69634,1938.0],"PRO":[427.39089,1499.99998],"DG":[1820.39119,1159.79476],"OP":[720.86924,838.59475],"FPT":[9.0,69.09092],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Cundinamarca","label":"Cundinamarca","kind":"sede","v":{"OIES":[2079.46311,1496.78258],"EC":[1137.59382,1292.0],"PRO":[427.39089,999.99998],"DG":[1773.50079,1159.79476],"OP":[696.5565,835.71747],"FPT":[9.0,69.09092],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Soacha","label":"Soacha","kind":"cu","v":{"OIES":[1053.6617,643.87046],"EC":[233.632,323.0],"PRO":[0.0,250.0],"DG":[648.70669,460.57654],"OP":[223.1992,340.23512],"FPT":[0.0,0.0],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Zipaquirá","label":"Zipaquirá","kind":"cu","v":{"OIES":[560.6434,316.627],"EC":[608.46282,323.0],"PRO":[427.39089,250.0],"DG":[524.3412,337.69358],"OP":[186.77128,259.72255],"FPT":[0.0,69.09092],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Girardot","label":"Girardot","kind":"cu","v":{"OIES":[414.41185,383.48457],"EC":[122.628,323.0],"PRO":[0.0,250.0],"DG":[308.5355,220.14241],"OP":[138.80333,93.979],"FPT":[9.0,0.0],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Madrid","label":"Madrid","kind":"cu","v":{"OIES":[50.74616,152.80055],"EC":[172.871,323.0],"PRO":[0.0,250.0],"DG":[291.9174,141.38224],"OP":[147.78269,141.7808],"FPT":[0.0,0.0],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Boyacá","label":"Boyacá","kind":"sede","v":{"OIES":[2.90557,314.27851],"EC":[172.10252,646.0],"PRO":[0.0,499.99999],"DG":[46.8904,0.0],"OP":[24.31274,2.87728],"FPT":[0.0,0.0],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Duitama","label":"Duitama","kind":"cu","v":{"OIES":[0.0,0.0],"EC":[77.32062,323.0],"PRO":[0.0,250.0],"DG":[33.4968,0.0],"OP":[16.33553,2.87728],"FPT":[0.0,0.0],"ART":[0.0,0.0],"OAA":[0.0,0.0]}},{"k":"Chiquinquirá","label":"Chiquinquirá","kind":"cu","v":{"OIES":[2.90557,314.27851],"EC":[94.7819,323.0],"PRO":[0.0,250.0],"DG":[13.3936,0.0],"OP":[7.97721,0.0],"FPT":[0.0,0.0],"ART":[0.0,0.0],"OAA":[0.0,0.0]}}],"chart":[["OIES","Otros ingresos de educación superior","var(--blue-600)","#cddaf4"],["EC","Educación Continua","var(--purple-600)","#e4d9fd"],["FPT","Formación para el Trabajo","var(--teal-600)","#bdece5"],["PRO","Ingresos por proyectos","var(--coral-600)","#ffdcda"],["DG","Derechos de grado","var(--green-600)","#bbf0d6"],["OP","Otros pecuniarios","#64748b","#cbd5e1"]]}</script>
+      </div>
+    </div>
+  </section>
   <section class="section" id="categorias-resumen">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="kicker">01 — <span>Categorías</span></div>
-          <h2>Ingresos reales vs. meta por categoría (acumulado anual)</h2>
+          <div class="kicker">02 — <span>Categorías</span></div>
+          <h2>Ingresos reales vs. meta por categoría</h2>
         </div>
-        <div class="desc">Comparación en millones de pesos, suma de I y II Semestre 2026. La etiqueta superior muestra el % de cumplimiento acumulado de cada categoría frente a su meta anual.</div>
+        <div class="desc">Comparación en millones de pesos, acumulado I + II Semestre 2026. Otros ingresos de educación superior agrupa diplomados opción de grado, cursos opción de grado e intersemestrales. La etiqueta superior muestra el % de cumplimiento. El gráfico se actualiza según el CU que selecciones arriba.</div>
       </div>
 
-      <div class="chart-card">
-        <div class="barchart" style="grid-template-columns:repeat(7, 1fr);">
+      <div class="chart-card" id="chart-resumen"><div class="chart-sel" data-f="ctitle">Total Sede Cundinamarca Boyacá</div>
+        <div class="barchart" style="grid-template-columns:repeat(6, 1fr);">
           <div class="gridline" style="bottom:0%;"><span class="gl-label">$0</span></div>
-          <div class="gridline" style="bottom:25%;"><span class="gl-label">$525M</span></div>
-          <div class="gridline" style="bottom:50%;"><span class="gl-label">$1.050M</span></div>
-          <div class="gridline" style="bottom:75%;"><span class="gl-label">$1.575M</span></div>
-          <div class="gridline" style="bottom:100%;"><span class="gl-label">$2.100M</span></div>
+          <div class="gridline" style="bottom:25%;"><span class="gl-label">$600M</span></div>
+          <div class="gridline" style="bottom:50%;"><span class="gl-label">$1.200M</span></div>
+          <div class="gridline" style="bottom:75%;"><span class="gl-label">$1.800M</span></div>
+          <div class="gridline" style="bottom:100%;"><span class="gl-label">$2.400M</span></div>
 
           <div class="bc-col">
-            <span class="bc-badge ok">234,9%</span>
+            <span class="bc-badge ok">115,0%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:15.34%; background:var(--teal-600);"><span class="bc-val">322,2</span></div>
-              <div class="bc-bar" style="height:6.53%; background:#bdece5;"><span class="bc-val">137,1</span></div>
+              <div class="bc-bar" style="height:86.77%; background:var(--blue-600);"><span class="bc-val">2.082,4</span></div>
+              <div class="bc-bar" style="height:75.46%; background:#cddaf4;"><span class="bc-val">1.811,1</span></div>
             </div>
-            <div class="bc-label">Cursos coterminales</div>
+            <div class="bc-label">Otros ingresos de educación superior</div>
           </div>
           <div class="bc-col">
-            <span class="bc-badge ok">157,0%</span>
+            <span class="bc-badge bad">67,6%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:86.69%; background:var(--green-600);"><span class="bc-val">1.820,4</span></div>
-              <div class="bc-bar" style="height:55.23%; background:#bbf0d6;"><span class="bc-val">1.159,8</span></div>
-            </div>
-            <div class="bc-label">Derechos de grado</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge ok">107,5%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:12.26%; background:var(--gold-600);"><span class="bc-val">257,4</span></div>
-              <div class="bc-bar" style="height:11.40%; background:#ffe6b3;"><span class="bc-val">239,4</span></div>
-            </div>
-            <div class="bc-label">Intersemestrales</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge ok">104,6%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:71.43%; background:var(--blue-600);"><span class="bc-val">1.500,1</span></div>
-              <div class="bc-bar" style="height:68.31%; background:#cddaf4;"><span class="bc-val">1.434,5</span></div>
-            </div>
-            <div class="bc-label">Diplomados opción de grado</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge bad">85,8%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:34.27%; background:#64748b;"><span class="bc-val">719,7</span></div>
-              <div class="bc-bar" style="height:39.93%; background:#cbd5e1;"><span class="bc-val">838,6</span></div>
-            </div>
-            <div class="bc-label">Otros pecuniarios</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge bad">62,4%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:62.37%; background:var(--purple-600);"><span class="bc-val">1.309,7</span></div>
-              <div class="bc-bar" style="height:100.00%; background:#e4d9fd;"><span class="bc-val">2.100,0</span></div>
+              <div class="bc-bar" style="height:54.57%; background:var(--purple-600);"><span class="bc-val">1.309,7</span></div>
+              <div class="bc-bar" style="height:80.75%; background:#e4d9fd;"><span class="bc-val">1.938,0</span></div>
             </div>
             <div class="bc-label">Educación Continua</div>
           </div>
           <div class="bc-col">
+            <span class="bc-badge bad">13,0%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:0.38%; background:var(--teal-600);"><span class="bc-val">9,0</span></div>
+              <div class="bc-bar" style="height:2.88%; background:#bdece5;"><span class="bc-val">69,1</span></div>
+            </div>
+            <div class="bc-label">Formación para el Trabajo</div>
+          </div>
+          <div class="bc-col">
             <span class="bc-badge bad">28,5%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:20.35%; background:var(--coral-600);"><span class="bc-val">427,4</span></div>
-              <div class="bc-bar" style="height:71.43%; background:#ffdcda;"><span class="bc-val">1.500,0</span></div>
+              <div class="bc-bar" style="height:17.81%; background:var(--coral-600);"><span class="bc-val">427,4</span></div>
+              <div class="bc-bar" style="height:62.50%; background:#ffdcda;"><span class="bc-val">1.500,0</span></div>
             </div>
             <div class="bc-label">Ingresos por proyectos</div>
+          </div>
+          <div class="bc-col">
+            <span class="bc-badge ok">157,0%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:75.85%; background:var(--green-600);"><span class="bc-val">1.820,4</span></div>
+              <div class="bc-bar" style="height:48.32%; background:#bbf0d6;"><span class="bc-val">1.159,8</span></div>
+            </div>
+            <div class="bc-label">Derechos de grado</div>
+          </div>
+          <div class="bc-col">
+            <span class="bc-badge bad">86,0%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:30.04%; background:#64748b;"><span class="bc-val">720,9</span></div>
+              <div class="bc-bar" style="height:34.94%; background:#cbd5e1;"><span class="bc-val">838,6</span></div>
+            </div>
+            <div class="bc-label">Otros pecuniarios</div>
           </div>
         </div>
 
@@ -532,95 +556,6 @@
         <div class="chart-legend" style="margin-top:10px;">
           <span><i style="background:var(--green-100)"></i>Badge verde = cumple meta</span>
           <span><i style="background:var(--coral-100)"></i>Badge rojo = por debajo</span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section alt" id="sedes-resumen">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">02 — <span>CU y CT</span></div>
-          <h2>Ingresos reales por CU y CT (acumulado anual)</h2>
-        </div>
-        <div class="desc">Suma de las siete categorías de ingreso (operacionales y pecuniarios) por CU/CT, I y II semestre de 2026, en los 15 lugares de operación de la Sede Cundinamarca Boyacá. Zipaquirá y Soacha concentran el 68,1% del total.</div>
-      </div>
-
-      <div class="hbar-card">
-        <div class="hbar-row">
-          <div><div class="name">Zipaquirá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:100.00%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$2.215,4M<span class="share">34,9% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Soacha</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:95.53%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$2.116,4M<span class="share">33,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Girardot</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:41.91%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$928,5M<span class="share">14,6% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Madrid</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:18.80%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$416,5M<span class="share">6,6% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Duitama</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:5.74%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$127,1M<span class="share">2,0% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Ubaté</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:4.16%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$92,1M<span class="share">1,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Facatativá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:4.13%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$91,5M<span class="share">1,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Chiquinquirá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:3.87%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$85,7M<span class="share">1,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Villeta</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:3.71%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$82,1M<span class="share">1,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Funza</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:3.29%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$72,8M<span class="share">1,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Mesa</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:2.52%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$55,8M<span class="share">0,9% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Fusagasugá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:1.78%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$39,3M<span class="share">0,6% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Puerto Boyacá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:1.51%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$33,4M<span class="share">0,5% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Palma</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.01%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$0,1M<span class="share">0,0% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Vega</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.00%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$0,1M<span class="share">0,0% del total</span></div>
         </div>
       </div>
     </div>
@@ -632,121 +567,30 @@
           <div class="kicker">03 — <span>Lectura gerencial</span></div>
           <h2>Hallazgos clave y recomendaciones</h2>
         </div>
-        <div class="desc">Síntesis anual para la toma de decisiones, combinando I y II Semestre 2026 y las siete categorías de ingreso (operacionales y pecuniarios).</div>
+        <div class="desc">Síntesis anual para la toma de decisiones con base en la hoja Unificado (I + II Semestre 2026).</div>
       </div>
 
       <div class="grid-2">
         <div class="card findings">
           <h3><span class="swatch"></span>Hallazgos clave</h3>
           <ul>
-            <li>El acumulado anual (corte al 8 de noviembre), ya con las siete categorías unificadas, alcanza un cumplimiento general de 85,8% sobre una meta combinada de $7.409,5M.</li>
-            <li>Cursos coterminales (234,9%), Derechos de grado (157,0%), Intersemestrales (107,5%) y Diplomados opción de grado (104,6%) ya superan su meta acumulada; Otros pecuniarios (85,8%), Educación Continua (62,4%) y Ingresos por proyectos (28,5%) siguen rezagadas.</li>
-            <li>Zipaquirá se consolida como el lugar de operación líder del año con $2.215,4M reales, seguido muy de cerca por Soacha ($2.116,4M).</li>
-            <li>Zipaquirá y Soacha concentran el 68,1% del ingreso real acumulado del año, al incorporar las categorías pecuniarias.</li>
-            <li>Girardot alcanza un cumplimiento de 544,9% en Cursos coterminales en el acumulado anual, uno de los más altos de la Sede.</li>
-            <li>Se incorporan La Vega y La Palma como nuevos lugares de operación en el año, con montos aún incipientes.</li>
+            <li>El acumulado anual (corte al 12 de noviembre) alcanza un cumplimiento general de 87,1%: $6.369,7M reales sobre una meta de $7.316,5M (faltan $946,8M).</li>
+            <li>Derechos de grado (157,0%) y Otros ingresos de educación superior (115,0%) superan su meta acumulada; Ingresos por proyectos (28,5%), Educación Continua (67,6%) y Otros pecuniarios (86,0%) siguen por debajo.</li>
+            <li>Zipaquirá lidera con $2.307,6M reales (36,2% de la Sede), seguido de Soacha ($2.159,2M); entre ambos concentran el 70,1% del ingreso real.</li>
+            <li>Otros ingresos de educación superior (diplomados, cursos coterminales e intersemestrales) suma $2.082,4M frente a una meta de $1.811,1M, es decir 115,0%.</li>
+            <li>Boyacá aporta $246,2M reales (3,9% de la Sede) con un cumplimiento de 16,8% sobre una meta de $1.463,2M, concentrado en Educación Continua.</li>
+            <li>Formación para el Trabajo registra $9,0M reales en Girardot frente a una meta de $69,1M cargada a Zipaquirá (13,0%).</li>
           </ul>
         </div>
         <div class="card reco">
           <h3><span class="swatch"></span>Recomendaciones</h3>
           <ul>
             <li>Mantener el ritmo de Zipaquirá y Soacha, y replicar sus prácticas en Girardot y Madrid.</li>
-            <li>Priorizar Ingresos por proyectos, Educación Continua y Otros pecuniarios en la planeación del cierre de año, dado su bajo cumplimiento acumulado.</li>
-            <li>Dar seguimiento consolidado trimestral para anticipar brechas frente a la meta anual.</li>
-            <li>Investigar el valor negativo registrado en Girardot para Ingresos por proyectos en el II semestre (-$1,5M), que neutraliza el ingreso del I semestre.</li>
-            <li>Consolidar el crecimiento de Zipaquirá en Educación Continua ($608,5M) y Derechos de grado ($472,1M), categorías con mayor aporte real de esta sede.</li>
-            <li>Dar seguimiento a la incorporación de La Vega y La Palma como nuevos lugares de operación.</li>
+            <li>Priorizar Ingresos por proyectos, Educación Continua y Otros pecuniarios en la planeación del cierre de año, dado su cumplimiento acumulado.</li>
+            <li>Revisar las metas de Boyacá: 16,8% de cumplimiento, con metas de $314,3M en otros ingresos de educación superior y $500,0M en proyectos sin avance registrado.</li>
+            <li>Alinear Formación para el Trabajo: el ingreso ($9,0M) está en Girardot y la meta ($69,1M) en Zipaquirá.</li>
+            <li>Dar seguimiento consolidado quincenal para anticipar brechas frente a la meta anual.</li>
           </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <section class="section" id="detalle-resumen">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">04 — <span>Detalle completo</span></div>
-          <h2>Tabla completa por Lugar de Operación y categoría (acumulado anual)</h2>
-        </div>
-        <div class="desc">Suma de I y II Semestre 2026, siete categorías unificadas (operacionales y pecuniarios). Desliza horizontalmente en pantallas pequeñas.</div>
-      </div>
-
-      <div class="table-card">
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr class="grp">
-                <th rowspan="2" style="text-align:left;">Detalle / CU - CT</th>
-                <th colspan="3">Diplomados opción de grado</th>
-                <th colspan="3">Cursos opción de grado coterminales</th>
-                <th colspan="3">Intersemestrales</th>
-                <th colspan="3">Educación Continua</th>
-                <th colspan="3">Ingresos por proyectos</th>
-                <th colspan="3">Derechos de grado</th>
-                <th colspan="3">Otros pecuniarios</th>
-              </tr>
-              <tr class="sub">
-                <th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="total">
-                <td>Total Cundinamarca - Boyacá</td><td>$ 1.500,1</td><td>$ 1.434,5</td><td class="ok">104,6%</td><td>$ 322,2</td><td>$ 137,1</td><td class="ok">234,9%</td><td>$ 257,4</td><td>$ 239,4</td><td class="ok">107,5%</td><td>$ 1.309,7</td><td>$ 2.100,0</td><td class="bad">62,4%</td><td>$ 427,4</td><td>$ 1.500,0</td><td class="bad">28,5%</td><td>$ 1.820,4</td><td>$ 1.159,8</td><td class="ok">157,0%</td><td>$ 719,7</td><td>$ 838,6</td><td class="bad">85,8%</td>
-              </tr>
-              <tr class="region">
-                <td>Cundinamarca</td><td>$ 1.500,1</td><td>$ 1.120,3</td><td class="ok">133,9%</td><td>$ 319,3</td><td>$ 137,1</td><td class="ok">232,8%</td><td>$ 257,4</td><td>$ 239,4</td><td class="ok">107,5%</td><td>$ 1.137,6</td><td>$ 1.600,0</td><td class="bad">71,1%</td><td>$ 427,4</td><td>$ 1.000,0</td><td class="bad">42,7%</td><td>$ 1.773,5</td><td>$ 1.159,8</td><td class="ok">152,9%</td><td>$ 695,4</td><td>$ 835,7</td><td class="bad">83,2%</td>
-              </tr>
-              <tr>
-                <td>Soacha</td><td>$ 896,6</td><td>$ 503,7</td><td class="ok">178,0%</td><td>$ 53,3</td><td>$ 61,5</td><td class="bad">86,6%</td><td>$ 87,8</td><td>$ 78,6</td><td class="ok">111,6%</td><td>$ 223,6</td><td>$ 400,0</td><td class="bad">55,9%</td><td>$ 0,0</td><td>$ 250,0</td><td class="bad">0,0%</td><td>$ 639,8</td><td>$ 460,6</td><td class="ok">138,9%</td><td>$ 215,4</td><td>$ 340,2</td><td class="bad">63,3%</td>
-              </tr>
-              <tr>
-                <td>Zipaquirá</td><td>$ 401,9</td><td>$ 199,0</td><td class="ok">201,9%</td><td>$ 35,7</td><td>$ 12,6</td><td class="ok">284,3%</td><td>$ 103,3</td><td>$ 105,1</td><td class="bad">98,3%</td><td>$ 608,5</td><td>$ 400,0</td><td class="ok">152,1%</td><td>$ 427,4</td><td>$ 250,0</td><td class="ok">171,0%</td><td>$ 472,1</td><td>$ 337,7</td><td class="ok">139,8%</td><td>$ 166,6</td><td>$ 259,7</td><td class="bad">64,1%</td>
-              </tr>
-              <tr>
-                <td>Girardot</td><td>$ 169,5</td><td>$ 276,7</td><td class="bad">61,3%</td><td>$ 189,4</td><td>$ 34,8</td><td class="ok">544,9%</td><td>$ 42,9</td><td>$ 32,0</td><td class="ok">133,9%</td><td>$ 122,7</td><td>$ 400,0</td><td class="bad">30,7%</td><td>$ 0,0</td><td>$ 250,0</td><td class="bad">0,0%</td><td>$ 281,6</td><td>$ 220,1</td><td class="ok">127,9%</td><td>$ 122,4</td><td>$ 90,6</td><td class="ok">135,1%</td>
-              </tr>
-              <tr>
-                <td>Ubaté</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 19,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 52,2</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 20,0</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Madrid</td><td>$ 26,9</td><td>$ 107,9</td><td class="bad">24,9%</td><td>$ 0,0</td><td>$ 28,3</td><td class="bad">0,0%</td><td>$ 3,5</td><td>$ 16,6</td><td class="bad">21,1%</td><td>$ 170,9</td><td>$ 400,0</td><td class="bad">42,7%</td><td>$ 0,0</td><td>$ 250,0</td><td class="bad">0,0%</td><td>$ 144,9</td><td>$ 141,4</td><td class="ok">102,5%</td><td>$ 70,4</td><td>$ 141,8</td><td class="bad">49,7%</td>
-              </tr>
-              <tr>
-                <td>La Mesa</td><td>$ 5,3</td><td>$ 33,0</td><td class="bad">16,1%</td><td>$ 7,3</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 7,0</td><td class="bad">0,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 26,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 16,3</td><td>$ 3,4</td><td class="ok">476,7%</td>
-              </tr>
-              <tr>
-                <td>Fusagasugá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 13,3</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 10,0</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 8,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 7,1</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Villeta</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 16,6</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 37,2</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 28,3</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Facatativá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 3,7</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 59,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 27,9</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Funza</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 2,0</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 49,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 20,9</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>La Vega</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,1</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>La Palma</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,1</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr class="region">
-                <td>Boyacá</td><td>$ 0,0</td><td>$ 314,3</td><td class="bad">0,0%</td><td>$ 2,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 172,1</td><td>$ 500,0</td><td class="bad">34,4%</td><td>$ 0,0</td><td>$ 500,0</td><td class="bad">0,0%</td><td>$ 46,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 24,3</td><td>$ 2,9</td><td class="ok">845,0%</td>
-              </tr>
-              <tr>
-                <td>Duitama</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 77,3</td><td>$ 250,0</td><td class="bad">30,9%</td><td>$ 0,0</td><td>$ 250,0</td><td class="bad">0,0%</td><td>$ 33,5</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 16,3</td><td>$ 2,9</td><td class="ok">567,7%</td>
-              </tr>
-              <tr>
-                <td>Chiquinquirá</td><td>$ 0,0</td><td>$ 314,3</td><td class="bad">0,0%</td><td>$ 2,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 63,0</td><td>$ 250,0</td><td class="bad">25,2%</td><td>$ 0,0</td><td>$ 250,0</td><td class="bad">0,0%</td><td>$ 12,8</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 7,0</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Puerto Boyacá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 31,8</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,6</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,9</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
 
@@ -756,7 +600,7 @@
 </main>
 
 <footer>
-  Informe de alta gerencia · Otros ingresos operacionales · Sede Cundinamarca y Boyacá · <b>Acumulado I + II Semestre 2026</b>, corte al 8 de noviembre de 2026 · Cifras en millones de pesos
+  Informe de alta gerencia · Otros ingresos operacionales · Sede Cundinamarca y Boyacá · <b>Acumulado I + II Semestre 2026</b>, corte al 12 de noviembre de 2026 · Cifras en millones de pesos
 </footer>
 </div>
 </div>
@@ -767,8 +611,8 @@
     <div class="eyebrow">Sede Cundinamarca Boyacá</div>
     <h1>Cierre otros ingresos operacionales 2026&#8209;S1</h1>
     <div class="meta-row" style="margin-top:28px;">
-      <div class="item"><div class="label">Corte de datos</div><div class="value">9/ 11 / 2026</div></div>
-      <div class="item"><div class="label">Líneas de ingreso</div><div class="value">5 categorías</div></div>
+      <div class="item"><div class="label">Corte de datos</div><div class="value">12 / 11 / 2026</div></div>
+      <div class="item"><div class="label">Líneas de ingreso</div><div class="value">6 categorías</div></div>
     </div>
   </div>
 </header>
@@ -780,56 +624,13 @@
 
       <div class="kpi-card">
         <div class="kpi-visual">
-          <div class="donut" style="background:conic-gradient(var(--blue-600) 0% 76.76%, #e7ecf5 76.76% 100%);">
-            <div class="donut-label"><span class="num">76,8%</span><span class="tag">de la meta</span></div>
+          <div class="donut" style="background:conic-gradient(var(--blue-600) 0% 88.23%, #e7ecf5 88.23% 100%);">
+            <div class="donut-label"><span class="num">88,2%</span><span class="tag">de la meta</span></div>
           </div>
         </div>
         <div class="kpi-content">
           <div class="kpi-title">Cumplimiento general</div>
-          <div class="kpi-foot">Real <b>$2.344,9M</b> de meta <b>$3.054,8M</b> · faltan <b>$709,9M</b> para alcanzar la meta semestral.</div>
-        </div>
-      </div>
-
-      <div class="kpi-card kpi-card-wide">
-        <div class="kpi-visual">
-          <div class="donut donut-lg" style="background:conic-gradient(
-              var(--teal-600) 0.00% 7.41%,
-              var(--gold-600) 7.41% 17.07%,
-              var(--blue-600) 17.07% 54.95%,
-              var(--purple-600) 54.95% 88.39%,
-              var(--coral-600) 88.39% 100.00%);">
-            <div class="donut-label"><span class="num">5</span><span class="tag">categorías</span></div>
-          </div>
-        </div>
-        <div class="kpi-content">
-          <div class="kpi-title">Ingresos por categoría — % de cumplimiento y valor real</div>
-          <div class="kpi-rows">
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--teal-600)"></i>Cursos coterminales</span>
-              <span class="kt-pct">353,4%</span>
-              <span class="kt-val">$173,8M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--gold-600)"></i>Intersemestrales</span>
-              <span class="kt-pct">209,3%</span>
-              <span class="kt-val">$226,4M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--blue-600)"></i>Diplomados opción de grado</span>
-              <span class="kt-pct">93,8%</span>
-              <span class="kt-val">$888,3M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--purple-600)"></i>Educación Continua</span>
-              <span class="kt-pct">65,3%</span>
-              <span class="kt-val">$784,1M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--coral-600)"></i>Ingresos por proyectos</span>
-              <span class="kt-pct">36,3%</span>
-              <span class="kt-val">$272,3M</span>
-            </div>
-          </div>
+          <div class="kpi-foot">Real <b>$3.380,9M</b> de meta <b>$3.832,1M</b> · faltan <b>$451,2M</b> para alcanzar la meta semestral.</div>
         </div>
       </div>
 
@@ -839,18 +640,49 @@
 
 <main>
 
+  <section class="section alt" id="selector-s1">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">01 — <span>Selector de CU</span></div>
+          <h2>Consulta por Centro Universitario</h2>
+        </div>
+        <div class="desc">Selecciona un CU para ver su cumplimiento y el detalle por concepto (meta, real y % de cumplimiento) en el I Semestre 2026, con los CT sumados a su CU.</div>
+      </div>
+
+      <div class="sel-card" id="sel-s1">
+        <div class="sel-group"><div class="gl">Sede y regionales</div><div class="sel-chips"><button type="button" class="chip on" data-k="Total" aria-pressed="true">Total Sede</button><button type="button" class="chip" data-k="Cundinamarca" aria-pressed="false">Cundinamarca</button><button type="button" class="chip" data-k="Boyacá" aria-pressed="false">Boyacá</button></div></div>
+        <div class="sel-group"><div class="gl">Centros universitarios (CU)</div><div class="sel-chips"><button type="button" class="chip" data-k="Soacha" aria-pressed="false">Soacha</button><button type="button" class="chip" data-k="Zipaquirá" aria-pressed="false">Zipaquirá</button><button type="button" class="chip" data-k="Girardot" aria-pressed="false">Girardot</button><button type="button" class="chip" data-k="Madrid" aria-pressed="false">Madrid</button><button type="button" class="chip" data-k="Duitama" aria-pressed="false">Duitama</button><button type="button" class="chip" data-k="Chiquinquirá" aria-pressed="false">Chiquinquirá</button></div></div>
+        <div class="sel-note">Los CT están sumados a su CU: Soacha incluye Fusagasugá; Zipaquirá incluye Ubaté; Girardot incluye La Mesa; Madrid incluye Funza, Facatativá y Villeta; Chiquinquirá incluye Puerto Boyacá.</div>
+        <div class="sel-body">
+          <div class="sel-kpi">
+            <div class="donut"><div class="donut-label"><span class="num" data-f="pct">—</span><span class="tag">de la meta</span></div></div>
+            <div class="sel-name" data-f="name"></div>
+            <div class="sub" data-f="sub"></div>
+          </div>
+          <div class="sel-table-wrap">
+            <table class="sel-table">
+              <thead><tr><th>Concepto</th><th>Real Total</th><th>Meta Total</th><th>% Cumpl.</th><th>Falta para la meta</th></tr></thead>
+              <tbody data-f="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <script type="application/json" class="sel-data">{"struct":[["Cursos",[["OIES","Otros ingresos de educación superior"],["EC","Educación Continua"],["FPT","Formación para el Trabajo"]]],["Pecuniarios",[["PRO","Ingresos por proyectos"],["DG","Derechos de grado"],["OP","Otros pecuniarios"]]]],"places":[{"k":"Total","label":"Total Sede Cundinamarca Boyacá","kind":"sede","v":{"OIES":[1288.477,1104.77884],"EC":[784.0728,969.0],"PRO":[272.2921,749.99999],"DG":[655.33329,506.59825],"OP":[371.69472,501.7132],"FPT":[9.0,0.0]}},{"k":"Cundinamarca","label":"Cundinamarca","kind":"sede","v":{"OIES":[1288.477,1104.77884],"EC":[721.5163,646.0],"PRO":[272.2921,499.99999],"DG":[655.33329,506.59825],"OP":[362.77262,501.13774],"FPT":[9.0,0.0]}},{"k":"Soacha","label":"Soacha","kind":"cu","v":{"OIES":[681.75805,566.3539],"EC":[146.059,161.5],"PRO":[0.0,125.0],"DG":[238.09219,176.85884],"OP":[112.36063,199.50616],"FPT":[0.0,0.0]}},{"k":"Zipaquirá","label":"Zipaquirá","kind":"cu","v":{"OIES":[387.3807,180.1949],"EC":[456.8063,161.5],"PRO":[270.7568,125.0],"DG":[195.9285,159.23119],"OP":[99.60712,133.02358],"FPT":[0.0,0.0]}},{"k":"Girardot","label":"Girardot","kind":"cu","v":{"OIES":[212.77165,251.48073],"EC":[56.651,161.5],"PRO":[1.53531,125.0],"DG":[114.8717,90.04747],"OP":[72.20695,93.979],"FPT":[9.0,0.0]}},{"k":"Madrid","label":"Madrid","kind":"cu","v":{"OIES":[6.5666,106.74931],"EC":[62.0,161.5],"PRO":[0.0,125.0],"DG":[106.4409,80.46074],"OP":[78.59792,74.62901],"FPT":[0.0,0.0]}},{"k":"Boyacá","label":"Boyacá","kind":"sede","v":{"OIES":[0.0,0.0],"EC":[62.5565,323.0],"PRO":[0.0,250.0],"DG":[0.0,0.0],"OP":[8.9221,0.57545],"FPT":[0.0,0.0]}},{"k":"Duitama","label":"Duitama","kind":"cu","v":{"OIES":[0.0,0.0],"EC":[31.4148,161.5],"PRO":[0.0,125.0],"DG":[0.0,0.0],"OP":[5.58497,0.57545],"FPT":[0.0,0.0]}},{"k":"Chiquinquirá","label":"Chiquinquirá","kind":"cu","v":{"OIES":[0.0,0.0],"EC":[31.1417,161.5],"PRO":[0.0,125.0],"DG":[0.0,0.0],"OP":[3.33713,0.0],"FPT":[0.0,0.0]}}],"chart":[["OIES","Otros ingresos de educación superior","var(--blue-600)","#cddaf4"],["EC","Educación Continua","var(--purple-600)","#e4d9fd"],["FPT","Formación para el Trabajo","var(--teal-600)","#bdece5"],["PRO","Ingresos por proyectos","var(--coral-600)","#ffdcda"],["DG","Derechos de grado","var(--green-600)","#bbf0d6"],["OP","Otros pecuniarios","#64748b","#cbd5e1"]]}</script>
+      </div>
+    </div>
+  </section>
   <section class="section" id="categorias-s1">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="kicker">01 — <span>Categorías</span></div>
+          <div class="kicker">02 — <span>Categorías</span></div>
           <h2>Ingresos reales vs. meta por categoría</h2>
         </div>
-        <div class="desc">Comparación en millones de pesos. La etiqueta superior muestra el % de cumplimiento de cada categoría frente a su meta semestral.</div>
+        <div class="desc">Comparación en millones de pesos. Otros ingresos de educación superior agrupa diplomados opción de grado, cursos opción de grado e intersemestrales. La etiqueta superior muestra el % de cumplimiento frente a la meta semestral. El gráfico se actualiza según el CU que selecciones arriba.</div>
       </div>
 
-      <div class="chart-card">
-        <div class="barchart">
+      <div class="chart-card" id="chart-s1"><div class="chart-sel" data-f="ctitle">Total Sede Cundinamarca Boyacá</div>
+        <div class="barchart" style="grid-template-columns:repeat(6, 1fr);">
           <div class="gridline" style="bottom:0%;"><span class="gl-label">$0</span></div>
           <div class="gridline" style="bottom:25%;"><span class="gl-label">$400M</span></div>
           <div class="gridline" style="bottom:50%;"><span class="gl-label">$800M</span></div>
@@ -858,44 +690,52 @@
           <div class="gridline" style="bottom:100%;"><span class="gl-label">$1.600M</span></div>
 
           <div class="bc-col">
-            <span class="bc-badge bad">93,8%</span>
+            <span class="bc-badge ok">116,6%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:55.52%; background:var(--blue-600);"><span class="bc-val">888,3</span></div>
-              <div class="bc-bar" style="height:59.21%; background:#cddaf4;"><span class="bc-val">947,4</span></div>
+              <div class="bc-bar" style="height:80.53%; background:var(--blue-600);"><span class="bc-val">1.288,5</span></div>
+              <div class="bc-bar" style="height:69.05%; background:#cddaf4;"><span class="bc-val">1.104,8</span></div>
             </div>
-            <div class="bc-label">Diplomados opción de grado</div>
+            <div class="bc-label">Otros ingresos de educación superior</div>
           </div>
           <div class="bc-col">
-            <span class="bc-badge ok">353,4%</span>
+            <span class="bc-badge bad">80,9%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:10.86%; background:var(--teal-600);"><span class="bc-val">173,8</span></div>
-              <div class="bc-bar" style="height:3.08%; background:#bdece5;"><span class="bc-val">49,2</span></div>
-            </div>
-            <div class="bc-label">Cursos coterminales</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge ok">209,3%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:14.15%; background:var(--gold-600);"><span class="bc-val">226,4</span></div>
-              <div class="bc-bar" style="height:6.76%; background:#ffe6b3;"><span class="bc-val">108,2</span></div>
-            </div>
-            <div class="bc-label">Intersemestrales</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge bad">65,3%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:49.01%; background:var(--purple-600);"><span class="bc-val">784,1</span></div>
-              <div class="bc-bar" style="height:75.00%; background:#e4d9fd;"><span class="bc-val">1.200,0</span></div>
+              <div class="bc-bar" style="height:49.00%; background:var(--purple-600);"><span class="bc-val">784,1</span></div>
+              <div class="bc-bar" style="height:60.56%; background:#e4d9fd;"><span class="bc-val">969,0</span></div>
             </div>
             <div class="bc-label">Educación Continua</div>
+          </div>
+          <div class="bc-col">
+            <span class="bc-badge ok">100,0%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:0.56%; background:var(--teal-600);"><span class="bc-val">9,0</span></div>
+              <div class="bc-bar" style="height:0.00%; background:#bdece5;"><span class="bc-val">0,0</span></div>
+            </div>
+            <div class="bc-label">Formación para el Trabajo</div>
           </div>
           <div class="bc-col">
             <span class="bc-badge bad">36,3%</span>
             <div class="bc-bars">
               <div class="bc-bar" style="height:17.02%; background:var(--coral-600);"><span class="bc-val">272,3</span></div>
-              <div class="bc-bar" style="height:46.88%; background:#ffdcda;"><span class="bc-val">750,0</span></div>
+              <div class="bc-bar" style="height:46.87%; background:#ffdcda;"><span class="bc-val">750,0</span></div>
             </div>
             <div class="bc-label">Ingresos por proyectos</div>
+          </div>
+          <div class="bc-col">
+            <span class="bc-badge ok">129,4%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:40.96%; background:var(--green-600);"><span class="bc-val">655,3</span></div>
+              <div class="bc-bar" style="height:31.66%; background:#bbf0d6;"><span class="bc-val">506,6</span></div>
+            </div>
+            <div class="bc-label">Derechos de grado</div>
+          </div>
+          <div class="bc-col">
+            <span class="bc-badge bad">74,1%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:23.23%; background:#64748b;"><span class="bc-val">371,7</span></div>
+              <div class="bc-bar" style="height:31.36%; background:#cbd5e1;"><span class="bc-val">501,7</span></div>
+            </div>
+            <div class="bc-label">Otros pecuniarios</div>
           </div>
         </div>
 
@@ -906,80 +746,6 @@
         <div class="chart-legend" style="margin-top:10px;">
           <span><i style="background:var(--green-100)"></i>Badge verde = cumple meta</span>
           <span><i style="background:var(--coral-100)"></i>Badge rojo = por debajo</span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section alt" id="sedes-s1">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">02 — <span>CU y CT</span></div>
-          <h2>Ingresos reales por CU y CT</h2>
-        </div>
-        <div class="desc">Suma de las cinco categorías de ingreso por CU/CT, en los 12 lugares de operación de la Sede Cundinamarca Boyacá. Zipaquirá y Soacha concentran el 81,8% del total.</div>
-      </div>
-
-      <div class="hbar-card">
-        <div class="hbar-row">
-          <div><div class="name">Zipaquirá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:100.00%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$1.099,5M<span class="share">46,9% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Soacha</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:74.37%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$817,7M<span class="share">34,9% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Girardot</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:23.98%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$263,7M<span class="share">11,2% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Madrid</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:5.71%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$62,8M<span class="share">2,7% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Duitama</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:2.86%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$31,4M<span class="share">1,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Chiquinquirá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:2.83%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$31,1M<span class="share">1,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Ubaté</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:1.42%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$15,6M<span class="share">0,7% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Fusagasugá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.91%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$10,0M<span class="share">0,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Mesa</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.66%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$7,3M<span class="share">0,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Facatativá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.34%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$3,7M<span class="share">0,2% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Funza</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.18%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$2,0M<span class="share">0,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Puerto Boyacá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.01%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$0,1M<span class="share">0,0% del total</span></div>
         </div>
       </div>
     </div>
@@ -998,104 +764,24 @@
         <div class="card findings">
           <h3><span class="swatch"></span>Hallazgos clave</h3>
           <ul>
-            <li>El cumplimiento general del semestre se ubica en 76,8%, con $2.344,9M reales sobre una meta de $3.054,8M (faltan $709,9M).</li>
-            <li>Zipaquirá se consolida como líder con $1.099,5M reales, seguido de Soacha ($817,7M) y Girardot ($263,7M); Zipaquirá y Soacha concentran el 81,8% del total.</li>
-            <li>Cursos coterminales (353,4%) e Intersemestrales (209,3%) son las categorías con mejor cumplimiento de la Sede.</li>
-            <li>Diplomados opción de grado se ubica en 93,8%, por debajo de la meta semestral.</li>
-            <li>Educación Continua (65,3%) e Ingresos por proyectos (36,3%) son las categorías más rezagadas.</li>
+            <li>El cumplimiento general del semestre se ubica en 88,2%: $3.380,9M reales sobre una meta de $3.832,1M (faltan $451,2M).</li>
+            <li>Zipaquirá lidera con $1.410,5M reales, seguido de Soacha ($1.178,3M) y Girardot ($467,0M); los dos primeros concentran el 76,6% del total.</li>
+            <li>Derechos de grado (129,4%) y Otros ingresos de educación superior (116,6%) superan su meta semestral; Ingresos por proyectos (36,3%), Otros pecuniarios (74,1%) y Educación Continua (80,9%) siguen por debajo.</li>
+            <li>Otros ingresos de educación superior (diplomados, cursos coterminales e intersemestrales) suma $1.288,5M frente a una meta de $1.104,8M.</li>
+            <li>Se incorporan Derechos de grado ($655,3M reales, 129,4%) y Otros pecuniarios ($371,7M reales, 74,1%) como parte de los Pecuniarios del semestre.</li>
+            <li>Formación para el Trabajo registra $9,0M reales en Girardot, sin meta asignada, y corresponde al I Semestre.</li>
+            <li>Educación Continua en Boyacá alcanza 19,4% de su meta ($62,6M de $323,0M).</li>
           </ul>
         </div>
         <div class="card reco">
           <h3><span class="swatch"></span>Recomendaciones</h3>
           <ul>
             <li>Mantener el ritmo de Zipaquirá y Soacha, y replicar sus prácticas en Girardot y Madrid.</li>
-            <li>Dar seguimiento prioritario a Diplomados opción de grado, categoría por debajo de la meta (93,8%).</li>
-            <li>Fortalecer Educación Continua en la regional Boyacá (19,5%), aún la más rezagada de la Sede.</li>
-            <li>Dar seguimiento a Ingresos por proyectos (36,3%), la categoría más rezagada en términos relativos.</li>
-            <li>Consolidar el crecimiento de Ubaté, único lugar con ingresos únicamente en Intersemestrales ($15,6M).</li>
+            <li>Dar seguimiento prioritario a Ingresos por proyectos, Otros pecuniarios y Educación Continua, las categorías por debajo de la meta.</li>
+            <li>Definir meta para Formación para el Trabajo, que registra ingreso en Girardot sin meta asignada en el I Semestre.</li>
+            <li>Consolidar Derechos de grado (129,4%), la categoría de mayor cumplimiento del semestre, y replicar sus prácticas en las demás.</li>
+            <li>Revisar la asignación de metas en los CT que registran ingreso sin meta (Ubaté, Fusagasugá, Villeta, Facatativá, Funza y Puerto Boyacá), hoy sumados a su CU.</li>
           </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <section class="section" id="detalle-s1">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">04 — <span>Detalle completo</span></div>
-          <h2>Tabla completa por Lugar de Operación y categoría</h2>
-        </div>
-        <div class="desc">Todos los valores fuente, sin agregar. Desliza horizontalmente en pantallas pequeñas.</div>
-      </div>
-
-      <div class="table-card">
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr class="grp">
-                <th rowspan="2" style="text-align:left;">Detalle / CU - CT</th>
-                <th colspan="3">Diplomados opción de grado</th>
-                <th colspan="3">Cursos opción de grado coterminales</th>
-                <th colspan="3">Intersemestrales</th>
-                <th colspan="3">Educación Continua</th>
-                <th colspan="3">Ingresos por proyectos</th>
-              </tr>
-              <tr class="sub">
-                <th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="total">
-                <td>Total Cundinamarca - Boyacá</td><td>$ 888,3</td><td>$ 947,4</td><td class="bad">93,8%</td><td>$ 173,8</td><td>$ 49,2</td><td class="ok">353,4%</td><td>$ 226,4</td><td>$ 108,2</td><td class="ok">209,3%</td><td>$ 784,1</td><td>$ 1.200,0</td><td class="bad">65,3%</td><td>$ 272,3</td><td>$ 750,0</td><td class="bad">36,3%</td>
-              </tr>
-              <tr class="region">
-                <td>Cundinamarca</td><td>$ 888,3</td><td>$ 947,4</td><td class="bad">93,8%</td><td>$ 173,8</td><td>$ 49,2</td><td class="ok">353,4%</td><td>$ 226,4</td><td>$ 108,2</td><td class="ok">209,3%</td><td>$ 721,5</td><td>$ 880,0</td><td class="bad">82,0%</td><td>$ 272,3</td><td>$ 500,0</td><td class="bad">54,5%</td>
-              </tr>
-              <tr>
-                <td>Soacha</td><td>$ 554,7</td><td>$ 500,5</td><td class="ok">110,8%</td><td>$ 46,6</td><td>$ 24,6</td><td class="ok">189,3%</td><td>$ 80,4</td><td>$ 41,2</td><td class="ok">195,0%</td><td>$ 136,0</td><td>$ 220,0</td><td class="bad">61,8%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Zipaquirá</td><td>$ 268,1</td><td>$ 134,9</td><td class="ok">198,7%</td><td>$ 10,9</td><td>$ 6,0</td><td class="ok">181,9%</td><td>$ 92,9</td><td>$ 39,3</td><td class="ok">236,4%</td><td>$ 456,8</td><td>$ 220,0</td><td class="ok">207,6%</td><td>$ 270,8</td><td>$ 125,0</td><td class="ok">216,6%</td>
-              </tr>
-              <tr>
-                <td>Girardot</td><td>$ 65,5</td><td>$ 208,8</td><td class="bad">31,4%</td><td>$ 105,3</td><td>$ 15,0</td><td class="ok">703,4%</td><td>$ 34,7</td><td>$ 20,7</td><td class="ok">168,1%</td><td>$ 56,7</td><td>$ 220,0</td><td class="bad">25,8%</td><td>$ 1,5</td><td>$ 125,0</td><td class="bad">1,2%</td>
-              </tr>
-              <tr>
-                <td>Ubaté</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 15,6</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>Madrid</td><td>$ 0,0</td><td>$ 103,2</td><td class="bad">0,0%</td><td>$ 0,0</td><td>$ 3,6</td><td class="bad">0,0%</td><td>$ 2,8</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 60,0</td><td>$ 220,0</td><td class="bad">27,3%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>La Mesa</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 7,3</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 7,0</td><td class="bad">0,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>Fusagasugá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 10,0</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>Villeta</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>Facatativá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 3,7</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>Funza</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 2,0</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr class="region">
-                <td>Boyacá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 62,6</td><td>$ 320,0</td><td class="bad">19,5%</td><td>$ 0,0</td><td>$ 250,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Duitama</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 31,4</td><td>$ 160,0</td><td class="bad">19,6%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Chiquinquirá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 31,1</td><td>$ 160,0</td><td class="bad">19,4%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Puerto Boyacá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,1</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
 
@@ -1105,7 +791,7 @@
 </main>
 
 <footer>
-  Informe de alta gerencia · Otros ingresos operacionales · Sede Cundinamarca y Boyacá · <b>I Semestre 2026</b>, corte al 8 de noviembre de 2026 · Cifras en millones de pesos
+  Informe de alta gerencia · Otros ingresos operacionales · Sede Cundinamarca y Boyacá · <b>I Semestre 2026</b>, corte al 12 de noviembre de 2026 · Cifras en millones de pesos
 </footer>
 </div>
 </div>
@@ -1116,8 +802,8 @@
     <div class="eyebrow">Sede Cundinamarca Boyacá</div>
     <h1>Otros ingresos operacionales 2026&#8209;S2</h1>
     <div class="meta-row" style="margin-top:28px;">
-      <div class="item"><div class="label">Corte de datos</div><div class="value">9 / 11 / 2026</div></div>
-      <div class="item"><div class="label">Líneas de ingreso</div><div class="value">5 categorías</div></div>
+      <div class="item"><div class="label">Corte de datos</div><div class="value">12 / 11 / 2026</div></div>
+      <div class="item"><div class="label">Líneas de ingreso</div><div class="value">6 categorías</div></div>
     </div>
   </div>
 </header>
@@ -1129,56 +815,13 @@
 
       <div class="kpi-card">
         <div class="kpi-visual">
-          <div class="donut" style="background:conic-gradient(var(--blue-600) 0% 62.47%, #e7ecf5 62.47% 100%);">
-            <div class="donut-label"><span class="num">62,5%</span><span class="tag">de la meta</span></div>
+          <div class="donut" style="background:conic-gradient(var(--blue-600) 0% 85.78%, #e7ecf5 85.78% 100%);">
+            <div class="donut-label"><span class="num">85,8%</span><span class="tag">de la meta</span></div>
           </div>
         </div>
         <div class="kpi-content">
           <div class="kpi-title">Cumplimiento general</div>
-          <div class="kpi-foot">Real <b>$1.471,9M</b> de meta <b>$2.356,3M</b> · faltan <b>$884,4M</b> para alcanzar la meta semestral.</div>
-        </div>
-      </div>
-
-      <div class="kpi-card kpi-card-wide">
-        <div class="kpi-visual">
-          <div class="donut donut-lg" style="background:conic-gradient(
-              var(--teal-600) 0.00% 10.08%,
-              var(--blue-600) 10.08% 51.65%,
-              var(--purple-600) 51.65% 87.36%,
-              var(--gold-600) 87.36% 89.46%,
-              var(--coral-600) 89.46% 100.00%);">
-            <div class="donut-label"><span class="num">5</span><span class="tag">categorías</span></div>
-          </div>
-        </div>
-        <div class="kpi-content">
-          <div class="kpi-title">Ingresos por categoría — % de cumplimiento y valor real</div>
-          <div class="kpi-rows">
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--teal-600)"></i>Cursos coterminales</span>
-              <span class="kt-pct">168,8%</span>
-              <span class="kt-val">$148,4M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--blue-600)"></i>Diplomados opción de grado</span>
-              <span class="kt-pct">125,6%</span>
-              <span class="kt-val">$611,8M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--purple-600)"></i>Educación Continua</span>
-              <span class="kt-pct">58,4%</span>
-              <span class="kt-val">$525,6M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--gold-600)"></i>Intersemestrales</span>
-              <span class="kt-pct">23,6%</span>
-              <span class="kt-val">$31,0M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--coral-600)"></i>Ingresos por proyectos</span>
-              <span class="kt-pct">20,7%</span>
-              <span class="kt-val">$155,1M</span>
-            </div>
-          </div>
+          <div class="kpi-foot">Real <b>$2.989,0M</b> de meta <b>$3.484,5M</b> · faltan <b>$495,5M</b> para alcanzar la meta semestral.</div>
         </div>
       </div>
 
@@ -1188,63 +831,102 @@
 
 <main>
 
+  <section class="section alt" id="selector-s2">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">01 — <span>Selector de CU</span></div>
+          <h2>Consulta por Centro Universitario</h2>
+        </div>
+        <div class="desc">Selecciona un CU para ver su cumplimiento y el detalle por concepto (meta, real y % de cumplimiento) en el II Semestre 2026, con los CT sumados a su CU.</div>
+      </div>
+
+      <div class="sel-card" id="sel-s2">
+        <div class="sel-group"><div class="gl">Sede y regionales</div><div class="sel-chips"><button type="button" class="chip on" data-k="Total" aria-pressed="true">Total Sede</button><button type="button" class="chip" data-k="Cundinamarca" aria-pressed="false">Cundinamarca</button><button type="button" class="chip" data-k="Boyacá" aria-pressed="false">Boyacá</button></div></div>
+        <div class="sel-group"><div class="gl">Centros universitarios (CU)</div><div class="sel-chips"><button type="button" class="chip" data-k="Soacha" aria-pressed="false">Soacha</button><button type="button" class="chip" data-k="Zipaquirá" aria-pressed="false">Zipaquirá</button><button type="button" class="chip" data-k="Girardot" aria-pressed="false">Girardot</button><button type="button" class="chip" data-k="Madrid" aria-pressed="false">Madrid</button><button type="button" class="chip" data-k="Duitama" aria-pressed="false">Duitama</button><button type="button" class="chip" data-k="Chiquinquirá" aria-pressed="false">Chiquinquirá</button></div></div>
+        <div class="sel-note">Los CT están sumados a su CU: Soacha incluye Fusagasugá; Zipaquirá incluye Ubaté; Girardot incluye La Mesa; Madrid incluye Funza, Facatativá, Villeta y La Palma; Chiquinquirá incluye Puerto Boyacá.</div>
+        <div class="sel-body">
+          <div class="sel-kpi">
+            <div class="donut"><div class="donut-label"><span class="num" data-f="pct">—</span><span class="tag">de la meta</span></div></div>
+            <div class="sel-name" data-f="name"></div>
+            <div class="sub" data-f="sub"></div>
+          </div>
+          <div class="sel-table-wrap">
+            <table class="sel-table">
+              <thead><tr><th>Concepto</th><th>Real Total</th><th>Meta Total</th><th>% Cumpl.</th><th>Falta para la meta</th></tr></thead>
+              <tbody data-f="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <script type="application/json" class="sel-data">{"struct":[["Cursos",[["OIES","Otros ingresos de educación superior"],["EC","Educación Continua"],["FPT","Formación para el Trabajo"]]],["Pecuniarios",[["PRO","Ingresos por proyectos"],["DG","Derechos de grado"],["OP","Otros pecuniarios"]]]],"places":[{"k":"Total","label":"Total Sede Cundinamarca Boyacá","kind":"sede","v":{"OIES":[793.89168,706.28224],"EC":[525.62354,969.0],"PRO":[155.09879,749.99999],"DG":[1165.0579,653.19651],"OP":[349.30102,336.88155],"FPT":[0.0,69.09092]}},{"k":"Cundinamarca","label":"Cundinamarca","kind":"sede","v":{"OIES":[790.98611,392.00374],"EC":[416.07752,646.0],"PRO":[155.09879,499.99999],"DG":[1118.1675,653.19651],"OP":[333.91038,334.57973],"FPT":[0.0,69.09092]}},{"k":"Soacha","label":"Soacha","kind":"cu","v":{"OIES":[371.90365,77.51656],"EC":[87.573,161.5],"PRO":[0.0,125.0],"DG":[410.6145,283.71769],"OP":[110.83857,140.72897],"FPT":[0.0,0.0]}},{"k":"Zipaquirá","label":"Zipaquirá","kind":"cu","v":{"OIES":[173.2627,136.43209],"EC":[151.65652,161.5],"PRO":[156.6341,125.0],"DG":[328.4127,178.46239],"OP":[87.16416,126.69897],"FPT":[0.0,69.09092]}},{"k":"Girardot","label":"Girardot","kind":"cu","v":{"OIES":[201.6402,132.00384],"EC":[65.977,161.5],"PRO":[-1.53531,125.0],"DG":[193.6638,130.09494],"OP":[66.59638,0.0],"FPT":[0.0,0.0]}},{"k":"Madrid","label":"Madrid","kind":"cu","v":{"OIES":[44.17956,46.05124],"EC":[110.871,161.5],"PRO":[0.0,125.0],"DG":[185.4765,60.92149],"OP":[69.31127,67.15179],"FPT":[0.0,0.0]}},{"k":"Boyacá","label":"Boyacá","kind":"sede","v":{"OIES":[2.90557,314.27851],"EC":[109.54602,323.0],"PRO":[0.0,250.0],"DG":[46.8904,0.0],"OP":[15.39064,2.30182],"FPT":[0.0,0.0]}},{"k":"Duitama","label":"Duitama","kind":"cu","v":{"OIES":[0.0,0.0],"EC":[45.90582,161.5],"PRO":[0.0,125.0],"DG":[33.4968,0.0],"OP":[10.75056,2.30182],"FPT":[0.0,0.0]}},{"k":"Chiquinquirá","label":"Chiquinquirá","kind":"cu","v":{"OIES":[2.90557,314.27851],"EC":[63.6402,161.5],"PRO":[0.0,125.0],"DG":[13.3936,0.0],"OP":[4.64008,0.0],"FPT":[0.0,0.0]}}],"chart":[["OIES","Otros ingresos de educación superior","var(--blue-600)","#cddaf4"],["EC","Educación Continua","var(--purple-600)","#e4d9fd"],["FPT","Formación para el Trabajo","var(--teal-600)","#bdece5"],["PRO","Ingresos por proyectos","var(--coral-600)","#ffdcda"],["DG","Derechos de grado","var(--green-600)","#bbf0d6"],["OP","Otros pecuniarios","#64748b","#cbd5e1"]]}</script>
+      </div>
+    </div>
+  </section>
   <section class="section" id="categorias-s2">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="kicker">01 — <span>Categorías</span></div>
+          <div class="kicker">02 — <span>Categorías</span></div>
           <h2>Ingresos reales vs. meta por categoría</h2>
         </div>
-        <div class="desc">Comparación en millones de pesos. La etiqueta superior muestra el % de cumplimiento de cada categoría frente a su meta semestral.</div>
+        <div class="desc">Comparación en millones de pesos. Otros ingresos de educación superior agrupa diplomados opción de grado, cursos opción de grado e intersemestrales. La etiqueta superior muestra el % de cumplimiento frente a la meta semestral. El gráfico se actualiza según el CU que selecciones arriba.</div>
       </div>
 
-      <div class="chart-card">
-        <div class="barchart">
+      <div class="chart-card" id="chart-s2"><div class="chart-sel" data-f="ctitle">Total Sede Cundinamarca Boyacá</div>
+        <div class="barchart" style="grid-template-columns:repeat(6, 1fr);">
           <div class="gridline" style="bottom:0%;"><span class="gl-label">$0</span></div>
-          <div class="gridline" style="bottom:25%;"><span class="gl-label">$225M</span></div>
-          <div class="gridline" style="bottom:50%;"><span class="gl-label">$450M</span></div>
-          <div class="gridline" style="bottom:75%;"><span class="gl-label">$675M</span></div>
-          <div class="gridline" style="bottom:100%;"><span class="gl-label">$900M</span></div>
+          <div class="gridline" style="bottom:25%;"><span class="gl-label">$400M</span></div>
+          <div class="gridline" style="bottom:50%;"><span class="gl-label">$800M</span></div>
+          <div class="gridline" style="bottom:75%;"><span class="gl-label">$1.200M</span></div>
+          <div class="gridline" style="bottom:100%;"><span class="gl-label">$1.600M</span></div>
 
           <div class="bc-col">
-            <span class="bc-badge ok">125,6%</span>
+            <span class="bc-badge ok">112,4%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:67.98%; background:var(--blue-600);"><span class="bc-val">611,8</span></div>
-              <div class="bc-bar" style="height:54.13%; background:#cddaf4;"><span class="bc-val">487,1</span></div>
+              <div class="bc-bar" style="height:49.62%; background:var(--blue-600);"><span class="bc-val">793,9</span></div>
+              <div class="bc-bar" style="height:44.14%; background:#cddaf4;"><span class="bc-val">706,3</span></div>
             </div>
-            <div class="bc-label">Diplomados opción de grado</div>
+            <div class="bc-label">Otros ingresos de educación superior</div>
           </div>
           <div class="bc-col">
-            <span class="bc-badge ok">168,8%</span>
+            <span class="bc-badge bad">54,2%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:16.49%; background:var(--teal-600);"><span class="bc-val">148,4</span></div>
-              <div class="bc-bar" style="height:9.77%; background:#bdece5;"><span class="bc-val">87,9</span></div>
-            </div>
-            <div class="bc-label">Cursos coterminales</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge bad">23,6%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:3.44%; background:var(--gold-600);"><span class="bc-val">31,0</span></div>
-              <div class="bc-bar" style="height:14.58%; background:#ffe6b3;"><span class="bc-val">131,2</span></div>
-            </div>
-            <div class="bc-label">Intersemestrales</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge bad">58,4%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:58.40%; background:var(--purple-600);"><span class="bc-val">525,6</span></div>
-              <div class="bc-bar" style="height:100.00%; background:#e4d9fd;"><span class="bc-val">900,0</span></div>
+              <div class="bc-bar" style="height:32.85%; background:var(--purple-600);"><span class="bc-val">525,6</span></div>
+              <div class="bc-bar" style="height:60.56%; background:#e4d9fd;"><span class="bc-val">969,0</span></div>
             </div>
             <div class="bc-label">Educación Continua</div>
           </div>
           <div class="bc-col">
+            <span class="bc-badge bad">0,0%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:0.00%; background:var(--teal-600);"><span class="bc-val">0,0</span></div>
+              <div class="bc-bar" style="height:4.32%; background:#bdece5;"><span class="bc-val">69,1</span></div>
+            </div>
+            <div class="bc-label">Formación para el Trabajo</div>
+          </div>
+          <div class="bc-col">
             <span class="bc-badge bad">20,7%</span>
             <div class="bc-bars">
-              <div class="bc-bar" style="height:17.23%; background:var(--coral-600);"><span class="bc-val">155,1</span></div>
-              <div class="bc-bar" style="height:83.33%; background:#ffdcda;"><span class="bc-val">750,0</span></div>
+              <div class="bc-bar" style="height:9.69%; background:var(--coral-600);"><span class="bc-val">155,1</span></div>
+              <div class="bc-bar" style="height:46.87%; background:#ffdcda;"><span class="bc-val">750,0</span></div>
             </div>
             <div class="bc-label">Ingresos por proyectos</div>
+          </div>
+          <div class="bc-col">
+            <span class="bc-badge ok">178,4%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:72.82%; background:var(--green-600);"><span class="bc-val">1.165,1</span></div>
+              <div class="bc-bar" style="height:40.82%; background:#bbf0d6;"><span class="bc-val">653,2</span></div>
+            </div>
+            <div class="bc-label">Derechos de grado</div>
+          </div>
+          <div class="bc-col">
+            <span class="bc-badge ok">103,7%</span>
+            <div class="bc-bars">
+              <div class="bc-bar" style="height:21.83%; background:#64748b;"><span class="bc-val">349,3</span></div>
+              <div class="bc-bar" style="height:21.06%; background:#cbd5e1;"><span class="bc-val">336,9</span></div>
+            </div>
+            <div class="bc-label">Otros pecuniarios</div>
           </div>
         </div>
 
@@ -1259,75 +941,6 @@
       </div>
     </div>
   </section>
-  <section class="section alt" id="sedes-s2">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">02 — <span>CU y CT</span></div>
-          <h2>Ingresos reales por CU y CT</h2>
-        </div>
-        <div class="desc">Suma de las cinco categorías de ingreso por CU/CT, en los 11 lugares de operación de la Sede Cundinamarca Boyacá. Zipaquirá concentra el 32,4% del total, seguida de cerca por Soacha (30,1%).</div>
-      </div>
-
-      <div class="hbar-card">
-        <div class="hbar-row">
-          <div><div class="name">Zipaquirá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:100.00%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$477,2M<span class="share">32,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Soacha</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:92.93%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$443,5M<span class="share">30,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Girardot</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:54.64%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$260,8M<span class="share">17,7% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Madrid</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:29.01%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$138,4M<span class="share">9,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Duitama</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:9.62%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$45,9M<span class="share">3,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Chiquinquirá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:7.29%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$34,8M<span class="share">2,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Puerto Boyacá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:6.65%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$31,7M<span class="share">2,2% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Villeta</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:3.48%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$16,6M<span class="share">1,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Fusagasugá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:2.79%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$13,3M<span class="share">0,9% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Mesa</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:1.11%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$5,3M<span class="share">0,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Ubaté</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.91%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$4,3M<span class="share">0,3% del total</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
   <section class="section alt" id="emisora-s2">
     <div class="wrap">
       <div class="section-head">
@@ -1335,7 +948,7 @@
           <div class="kicker">03 — <span>Emisora y Tienda</span></div>
           <h2>Ingresos por Emisora y Tienda Uniminuto</h2>
         </div>
-        <div class="desc">Ingresos reales por Emisora y Tienda Uniminuto, Sede completa. La regional Cundinamarca concentra el 100% de este ingreso.</div>
+        <div class="desc">Ingresos reales por Emisora y Tienda Uniminuto, Sede completa (hoja Distintos). La regional Cundinamarca concentra el 100% de este ingreso.</div>
       </div>
 
       <div class="kpi-card" style="max-width:680px; margin:0 auto;">
@@ -1378,99 +991,24 @@
         <div class="card findings">
           <h3><span class="swatch"></span>Hallazgos clave</h3>
           <ul>
-            <li>El cumplimiento general avanza a 62,5% ($1.471,9M de $2.356,3M), con un faltante de $884,4M para la meta semestral.</li>
-            <li>Zipaquirá se ubica al frente con $477,2M reales, seguido muy de cerca por Soacha ($443,5M), que sostiene un fuerte aporte en Diplomados opción de grado ($341,9M).</li>
-            <li>Girardot ($260,8M) y Madrid ($138,4M) completan los cuatro lugares de mayor aporte; se registra un valor negativo en Girardot - Proyectos (-$1,5M, -1,2%).</li>
-            <li>Cursos coterminales (168,8%) y Diplomados opción de grado (125,6%) ya superan su meta semestral.</li>
-            <li>Duitama ($45,9M), Chiquinquirá ($34,8M) y Puerto Boyacá ($31,7M) son los lugares de Boyacá con mayor aporte, impulsados principalmente por Educación Continua.</li>
-            <li>Ingresos por proyectos (20,7%), Intersemestrales (23,6%) y Educación Continua (58,4%) son las categorías más rezagadas del semestre.</li>
+            <li>El cumplimiento general del semestre avanza a 85,8% ($2.989,0M de $3.484,5M), con un faltante de $495,5M para la meta semestral.</li>
+            <li>Soacha se ubica al frente con $980,9M reales, seguido de Zipaquirá ($897,1M); Girardot ($526,3M) y Madrid ($409,8M) completan los cuatro lugares de mayor aporte.</li>
+            <li>Derechos de grado (178,4%), Otros ingresos de educación superior (112,4%) y Otros pecuniarios (103,7%) superan su meta semestral; Formación para el Trabajo (0,0%), Ingresos por proyectos (20,7%) y Educación Continua (54,2%) siguen por debajo.</li>
+            <li>Otros ingresos de educación superior suma $793,9M frente a una meta de $706,3M; Soacha registra el mayor cumplimiento (479,8%).</li>
+            <li>Derechos de grado ($1.165,1M reales, 178,4%) y Otros pecuniarios ($349,3M reales, 103,7%) hacen parte de los Pecuniarios del semestre; los CT sin meta asignada (sumados a su CU) son Ubaté, Fusagasugá, Villeta, Facatativá, Funza, La Palma y Puerto Boyacá.</li>
+            <li>Formación para el Trabajo tiene una meta de $69,1M cargada a Zipaquirá y no registra ingreso en el II Semestre (0,0%).</li>
+            <li>Duitama ($90,2M) y Chiquinquirá ($84,6M, incluye Puerto Boyacá) son los CU de Boyacá con ingreso, impulsados principalmente por Educación Continua.</li>
+            <li>Se registra un valor negativo en Girardot - Ingresos por proyectos (-$1,5M).</li>
           </ul>
         </div>
         <div class="card reco">
           <h3><span class="swatch"></span>Recomendaciones</h3>
           <ul>
-            <li>Investigar y resolver el valor negativo en Girardot para Ingresos por proyectos (-$1,5M).</li>
-            <li>Revisar la meta de Diplomados opción de grado en Soacha ($3,2M frente a un real de $341,9M) y replicar sus prácticas en otras sedes.</li>
-            <li>Mantener el ritmo de Zipaquirá y Girardot en Cursos coterminales (378,1% y 425,7%) y Diplomados opción de grado.</li>
-            <li>Priorizar Ingresos por proyectos, Intersemestrales y Educación Continua, las categorías más rezagadas del semestre.</li>
-            <li>Fortalecer Educación Continua, con foco en Girardot (36,7%) y Soacha (48,7%), los lugares con mayor brecha frente a su meta de $180,0M.</li>
+            <li>Investigar y resolver el valor negativo en Girardot para Ingresos por proyectos.</li>
+            <li>Revisar la meta de Otros ingresos de educación superior en Soacha ($77,5M de meta frente a un real de $371,9M) y replicar sus prácticas en otros lugares.</li>
+            <li>Priorizar Formación para el Trabajo, Ingresos por proyectos y Educación Continua, las categorías por debajo de la meta del semestre.</li>
+            <li>Fortalecer Educación Continua, con foco en Girardot (40,9%) y Chiquinquirá (39,4%), los lugares con mayor brecha frente a su meta.</li>
           </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <section class="section" id="detalle-s2">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">05 — <span>Detalle completo</span></div>
-          <h2>Tabla completa por Lugar de Operación y categoría</h2>
-        </div>
-        <div class="desc">Todos los valores fuente, sin agregar. Desliza horizontalmente en pantallas pequeñas.</div>
-      </div>
-
-      <div class="table-card">
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr class="grp">
-                <th rowspan="2" style="text-align:left;">Detalle / CU - CT</th>
-                <th colspan="3">Diplomados opción de grado</th>
-                <th colspan="3">Cursos opción de grado coterminales</th>
-                <th colspan="3">Intersemestrales</th>
-                <th colspan="3">Educación Continua</th>
-                <th colspan="3">Ingresos por proyectos</th>
-              </tr>
-              <tr class="sub">
-                <th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="total">
-                <td>Total Cundinamarca - Boyacá</td><td>$ 611,8</td><td>$ 487,1</td><td class="ok">125,6%</td><td>$ 148,4</td><td>$ 87,9</td><td class="ok">168,8%</td><td>$ 31,0</td><td>$ 131,2</td><td class="bad">23,6%</td><td>$ 525,6</td><td>$ 900,0</td><td class="bad">58,4%</td><td>$ 155,1</td><td>$ 750,0</td><td class="bad">20,7%</td>
-              </tr>
-              <tr class="region">
-                <td>Cundinamarca</td><td>$ 611,8</td><td>$ 172,9</td><td class="ok">353,9%</td><td>$ 145,5</td><td>$ 87,9</td><td class="ok">165,5%</td><td>$ 31,0</td><td>$ 131,2</td><td class="bad">23,6%</td><td>$ 416,1</td><td>$ 720,0</td><td class="bad">57,8%</td><td>$ 155,1</td><td>$ 500,0</td><td class="bad">31,0%</td>
-              </tr>
-              <tr>
-                <td>Soacha</td><td>$ 341,9</td><td>$ 3,2</td><td class="ok">10.720,7%</td><td>$ 6,7</td><td>$ 36,9</td><td class="bad">18,1%</td><td>$ 7,4</td><td>$ 37,4</td><td class="bad">19,7%</td><td>$ 87,6</td><td>$ 180,0</td><td class="bad">48,7%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Zipaquirá</td><td>$ 133,8</td><td>$ 64,1</td><td class="ok">208,7%</td><td>$ 24,8</td><td>$ 6,6</td><td class="ok">378,1%</td><td>$ 10,4</td><td>$ 65,8</td><td class="bad">15,7%</td><td>$ 151,7</td><td>$ 180,0</td><td class="bad">84,3%</td><td>$ 156,6</td><td>$ 125,0</td><td class="ok">125,3%</td>
-              </tr>
-              <tr>
-                <td>Girardot</td><td>$ 104,0</td><td>$ 67,9</td><td class="ok">153,1%</td><td>$ 84,1</td><td>$ 19,8</td><td class="ok">425,7%</td><td>$ 8,2</td><td>$ 11,3</td><td class="bad">72,5%</td><td>$ 66,0</td><td>$ 180,0</td><td class="bad">36,7%</td><td>-$ 1,5</td><td>$ 125,0</td><td class="bad">-1,2%</td>
-              </tr>
-              <tr>
-                <td>Madrid</td><td>$ 26,9</td><td>$ 4,7</td><td class="ok">574,1%</td><td>$ 0,0</td><td>$ 24,7</td><td class="bad">0,0%</td><td>$ 0,7</td><td>$ 16,6</td><td class="bad">4,3%</td><td>$ 110,9</td><td>$ 180,0</td><td class="bad">61,6%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Villeta</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 16,6</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>Fusagasugá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 13,3</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>Ubaté</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 4,3</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr>
-                <td>La Mesa</td><td>$ 5,3</td><td>$ 33,0</td><td class="bad">16,1%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-              <tr class="region">
-                <td>Boyacá</td><td>$ 0,0</td><td>$ 314,3</td><td class="bad">0,0%</td><td>$ 2,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 109,5</td><td>$ 180,0</td><td class="bad">60,9%</td><td>$ 0,0</td><td>$ 250,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Duitama</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 45,9</td><td>$ 90,0</td><td class="bad">51,0%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Chiquinquirá</td><td>$ 0,0</td><td>$ 314,3</td><td class="bad">0,0%</td><td>$ 2,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 31,9</td><td>$ 90,0</td><td class="bad">35,4%</td><td>$ 0,0</td><td>$ 125,0</td><td class="bad">0,0%</td>
-              </tr>
-              <tr>
-                <td>Puerto Boyacá</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 31,7</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
 
@@ -1480,430 +1018,73 @@
 </main>
 
 <footer>
-  Informe de alta gerencia · Otros ingresos operacionales · Sede Cundinamarca y Boyacá · <b>II Semestre 2026</b>, corte al 9 de noviembre de 2026 · Cifras en millones de pesos
+  Informe de alta gerencia · Otros ingresos operacionales · Sede Cundinamarca y Boyacá · <b>II Semestre 2026</b>, corte al 12 de noviembre de 2026 · Cifras en millones de pesos
 </footer>
 </div>
 </div>
 
-<div class="panel" id="panel-pec">
-<header class="hero">
-  <div class="wrap hero-inner">
-    <div class="eyebrow">Sede Cundinamarca Boyacá</div>
-    <h1>Otros pecuniarios S1 - S2 año 2026</h1>
-    <div class="meta-row" style="margin-top:28px;">
-      <div class="item"><div class="label">Corte de datos</div><div class="value">9 / 11 / 2026</div></div>
-      <div class="item"><div class="label">Líneas de ingreso</div><div class="value">2 categorías</div></div>
-    </div>
-  </div>
-</header>
 
-<div class="photo-bg">
-<div class="wrap">
-  <div class="kpi-strip">
-    <div class="kpi-row">
-
-      <div class="kpi-card">
-        <div class="kpi-visual">
-          <div class="donut" style="background:conic-gradient(var(--blue-600) 0% 100.00%, #e7ecf5 100.00% 100%);">
-            <div class="donut-label"><span class="num">127,1%</span><span class="tag">de la meta</span></div>
-          </div>
-        </div>
-        <div class="kpi-content">
-          <div class="kpi-title">Cumplimiento general acumulado</div>
-          <div class="kpi-foot">Real <b>$2.540,1M</b> de meta <b>$1.998,4M</b> · superó la meta anual en <b>$541,7M</b>.</div>
-        </div>
-      </div>
-
-      <div class="kpi-card kpi-card-wide">
-        <div class="kpi-visual">
-          <div class="donut donut-lg" style="background:conic-gradient(
-              var(--teal-600) 0.00% 71.67%,
-              var(--gold-600) 71.67% 100.00%);">
-            <div class="donut-label"><span class="num">2</span><span class="tag">categorías</span></div>
-          </div>
-        </div>
-        <div class="kpi-content">
-          <div class="kpi-title">Ingresos por categoría — % de cumplimiento y valor real (acumulado)</div>
-          <div class="kpi-rows">
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--teal-600)"></i>Derechos de grado</span>
-              <span class="kt-pct">157,0%</span>
-              <span class="kt-val">$1.820,4M</span>
-            </div>
-            <div class="kpi-row-item">
-              <span class="kt-name"><i style="background:var(--gold-600)"></i>Otros pecuniarios</span>
-              <span class="kt-pct">85,8%</span>
-              <span class="kt-val">$719,7M</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<main>
-
-  <section class="section" id="categorias-pec">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">01 — <span>Categorías</span></div>
-          <h2>Ingresos reales vs. meta por categoría, por semestre</h2>
-        </div>
-        <div class="desc">Comparación en millones de pesos de Derechos de grado y Otros pecuniarios, I y II Semestre 2026 mostrados por separado (no unificados). La etiqueta superior muestra el % de cumplimiento de cada categoría frente a su meta semestral.</div>
-      </div>
-
-      <div class="grid-2">
-        <div class="chart-card">
-          <div style="font-family:var(--font-display); font-size:16px; font-weight:800; color:var(--navy-900); margin-bottom:18px; text-align:center;">I Semestre 2026</div>
-          <div class="barchart" style="grid-template-columns:repeat(2, 1fr); max-width:340px; margin:0 auto;">
-          <div class="gridline" style="bottom:0%;"><span class="gl-label">$0</span></div>
-          <div class="gridline" style="bottom:25%;"><span class="gl-label">$175,0M</span></div>
-          <div class="gridline" style="bottom:50%;"><span class="gl-label">$350,0M</span></div>
-          <div class="gridline" style="bottom:75%;"><span class="gl-label">$525,0M</span></div>
-          <div class="gridline" style="bottom:100%;"><span class="gl-label">$700,0M</span></div>
-
-          <div class="bc-col">
-            <span class="bc-badge ok">129,4%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:93.62%; background:var(--teal-600);"><span class="bc-val">$655,3</span></div>
-              <div class="bc-bar" style="height:72.37%; background:#bdece5;"><span class="bc-val">$506,6</span></div>
-            </div>
-            <div class="bc-label">Derechos de grado</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge bad">74,1%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:53.10%; background:var(--gold-600);"><span class="bc-val">$371,7</span></div>
-              <div class="bc-bar" style="height:71.67%; background:#ffe6b3;"><span class="bc-val">$501,7</span></div>
-            </div>
-            <div class="bc-label">Otros pecuniarios</div>
-          </div>
-          </div>
-        </div>
-
-        <div class="chart-card">
-          <div style="font-family:var(--font-display); font-size:16px; font-weight:800; color:var(--navy-900); margin-bottom:18px; text-align:center;">II Semestre 2026</div>
-          <div class="barchart" style="grid-template-columns:repeat(2, 1fr); max-width:340px; margin:0 auto;">
-          <div class="gridline" style="bottom:0%;"><span class="gl-label">$0</span></div>
-          <div class="gridline" style="bottom:25%;"><span class="gl-label">$300M</span></div>
-          <div class="gridline" style="bottom:50%;"><span class="gl-label">$600M</span></div>
-          <div class="gridline" style="bottom:75%;"><span class="gl-label">$900M</span></div>
-          <div class="gridline" style="bottom:100%;"><span class="gl-label">$1.200M</span></div>
-
-          <div class="bc-col">
-            <span class="bc-badge ok">178,4%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:97.09%; background:var(--teal-600);"><span class="bc-val">$1.165,1</span></div>
-              <div class="bc-bar" style="height:54.43%; background:#bdece5;"><span class="bc-val">$653,2</span></div>
-            </div>
-            <div class="bc-label">Derechos de grado</div>
-          </div>
-          <div class="bc-col">
-            <span class="bc-badge ok">103,3%</span>
-            <div class="bc-bars">
-              <div class="bc-bar" style="height:29.00%; background:var(--gold-600);"><span class="bc-val">$348,0</span></div>
-              <div class="bc-bar" style="height:28.07%; background:#ffe6b3;"><span class="bc-val">$336,9</span></div>
-            </div>
-            <div class="bc-label">Otros pecuniarios</div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section alt" id="sedes-pec">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">02 — <span>CU y CT</span></div>
-          <h2>Ingresos reales por CU y CT, por semestre</h2>
-        </div>
-        <div class="desc">Suma de Derechos de grado y Otros pecuniarios en los lugares de operación de la Sede Cundinamarca Boyacá, I y II Semestre 2026 mostrados por separado (no unificados). En ambos semestres, Soacha y Zipaquirá concentran la mayor participación.</div>
-      </div>
-
-      <div class="grid-2">
-      <div class="hbar-card">
-        <div style="font-family:var(--font-display); font-size:16px; font-weight:800; color:var(--navy-900); margin:14px 0 4px;">I Semestre 2026</div>
-        <div class="hbar-row">
-          <div><div class="name">Soacha</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:100.00%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$347,4M<span class="share">33,8% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Zipaquirá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:79.09%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$274,8M<span class="share">26,8% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Girardot</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:48.41%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$168,2M<span class="share">16,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Madrid</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:26.66%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$92,6M<span class="share">9,0% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Funza</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:9.44%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$32,8M<span class="share">3,2% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Facatativá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:9.12%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$31,7M<span class="share">3,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Villeta</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:8.02%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$27,9M<span class="share">2,7% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Ubaté</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:5.98%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$20,8M<span class="share">2,0% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Mesa</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:5.44%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$18,9M<span class="share">1,8% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Duitama</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:1.61%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$5,6M<span class="share">0,5% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Fusagasugá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.87%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$3,0M<span class="share">0,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Chiquinquirá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.81%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$2,8M<span class="share">0,3% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Puerto Boyacá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.15%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$0,5M<span class="share">0,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Vega</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.02%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$0,1M<span class="share">0,0% del total</span></div>
-        </div>
-      </div>
-
-      <div class="hbar-card">
-        <div style="font-family:var(--font-display); font-size:16px; font-weight:800; color:var(--navy-900); margin:14px 0 4px;">II Semestre 2026</div>
-        <div class="hbar-row">
-          <div><div class="name">Soacha</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:100.00%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$507,8M<span class="share">33,6% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Zipaquirá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:71.66%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$363,9M<span class="share">24,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Girardot</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:46.44%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$235,8M<span class="share">15,6% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Madrid</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:24.15%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$122,6M<span class="share">8,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Facatativá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:11.04%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$56,1M<span class="share">3,7% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Ubaté</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:10.13%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$51,4M<span class="share">3,4% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Duitama</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:8.71%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$44,2M<span class="share">2,9% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Funza</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:7.49%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$38,1M<span class="share">2,5% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Villeta</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:7.41%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$37,6M<span class="share">2,5% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Mesa</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:4.78%; background:linear-gradient(90deg,#ff5a52,#ff8781);"></div></div>
-          <div class="hbar-value">$24,3M<span class="share">1,6% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Chiquinquirá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:3.35%; background:linear-gradient(90deg,#2f6fed,#5b9bff);"></div></div>
-          <div class="hbar-value">$17,0M<span class="share">1,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Fusagasugá</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:2.55%; background:linear-gradient(90deg,#0d9c8d,#22c3b0);"></div></div>
-          <div class="hbar-value">$13,0M<span class="share">0,9% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">Puerto Boyacá</div><div class="regional">Boyacá</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.20%; background:linear-gradient(90deg,#f0a500,#ffc233);"></div></div>
-          <div class="hbar-value">$1,0M<span class="share">0,1% del total</span></div>
-        </div>
-        <div class="hbar-row">
-          <div><div class="name">La Palma</div><div class="regional">Cundinamarca</div></div>
-          <div class="hbar-track"><div class="hbar-fill" style="width:0.02%; background:linear-gradient(90deg,#8b5cf6,#a684fa);"></div></div>
-          <div class="hbar-value">$0,1M<span class="share">0,0% del total</span></div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </section>
-  <section class="section alt" id="conclusiones-pec">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">03 — <span>Lectura gerencial</span></div>
-          <h2>Hallazgos clave y recomendaciones</h2>
-        </div>
-        <div class="desc">Síntesis anual para la toma de decisiones, combinando I y II Semestre 2026.</div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card findings">
-          <h3><span class="swatch"></span>Hallazgos clave</h3>
-          <ul>
-            <li>El acumulado anual (corte al 9 de noviembre) alcanza un cumplimiento general de 127,1% sobre una meta combinada de $1.998,4M, superándola en $541,7M.</li>
-            <li>Derechos de grado (157,0%) supera ampliamente su meta anual; Otros pecuniarios (85,8%) aún está por debajo.</li>
-            <li>Soacha lidera con $855,3M reales, seguido de Zipaquirá ($638,7M) y Girardot ($404,0M); juntas estas tres sedes concentran el 74,7% del total.</li>
-            <li>En Otros pecuniarios, Soacha (63,3%), Zipaquirá (64,1%) y Madrid (49,7%) presentan la mayor brecha frente a su meta; Girardot la supera (135,1%).</li>
-            <li>En Boyacá la fuente no registra meta de Derechos de grado (real $46,9M) y solo $2,9M de meta en Otros pecuniarios (real $24,3M), por lo que su cumplimiento no es comparable.</li>
-            <li>Se incorporan La Vega y La Palma como nuevos lugares de operación en el año, con montos aún incipientes.</li>
-          </ul>
-        </div>
-        <div class="card reco">
-          <h3><span class="swatch"></span>Recomendaciones</h3>
-          <ul>
-            <li>Mantener el ritmo de Soacha y Zipaquirá en Derechos de grado, y replicar sus prácticas en Girardot.</li>
-            <li>Priorizar Otros pecuniarios en Soacha, Zipaquirá y Madrid, los lugares con mayor brecha frente a su meta.</li>
-            <li>Revisar la asignación de metas de Derechos de grado y Otros pecuniarios en Boyacá y en los lugares que registran ingreso sin meta (Funza, Facatativá, Villeta, Ubaté, La Mesa y Fusagasugá).</li>
-            <li>Dar seguimiento a la incorporación de La Vega y La Palma como nuevos lugares de operación.</li>
-            <li>Consolidar el crecimiento de Girardot, que ya supera la meta tanto en Derechos de grado (127,9%) como en Otros pecuniarios (135,1%).</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <section class="section" id="detalle-pec">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="kicker">04 — <span>Detalle completo</span></div>
-          <h2>Tabla completa por Lugar de Operación y categoría (acumulado anual)</h2>
-        </div>
-        <div class="desc">Suma de I y II Semestre 2026. Desliza horizontalmente en pantallas pequeñas.</div>
-      </div>
-
-      <div class="table-card">
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr class="grp">
-                <th rowspan="2" style="text-align:left;">Detalle / CU - CT</th>
-                <th colspan="3">Derechos de grado</th>
-                <th colspan="3">Otros pecuniarios</th>
-              </tr>
-              <tr class="sub">
-                <th>Real</th><th>Meta</th><th>% Cumpl.</th><th>Real</th><th>Meta</th><th>% Cumpl.</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="total">
-                <td>Total Cundinamarca - Boyacá</td><td>$ 1.820,4</td><td>$ 1.159,8</td><td class="ok">157,0%</td><td>$ 719,7</td><td>$ 838,6</td><td class="bad">85,8%</td>
-              </tr>
-              <tr class="region">
-                <td>Cundinamarca</td><td>$ 1.773,5</td><td>$ 1.159,8</td><td class="ok">152,9%</td><td>$ 695,4</td><td>$ 835,7</td><td class="bad">83,2%</td>
-              </tr>
-              <tr>
-                <td>Soacha</td><td>$ 639,8</td><td>$ 460,6</td><td class="ok">138,9%</td><td>$ 215,4</td><td>$ 340,2</td><td class="bad">63,3%</td>
-              </tr>
-              <tr>
-                <td>Zipaquirá</td><td>$ 472,1</td><td>$ 337,7</td><td class="ok">139,8%</td><td>$ 166,6</td><td>$ 259,7</td><td class="bad">64,1%</td>
-              </tr>
-              <tr>
-                <td>Girardot</td><td>$ 281,6</td><td>$ 220,1</td><td class="ok">127,9%</td><td>$ 122,4</td><td>$ 90,6</td><td class="ok">135,1%</td>
-              </tr>
-              <tr>
-                <td>Madrid</td><td>$ 144,9</td><td>$ 141,4</td><td class="ok">102,5%</td><td>$ 70,4</td><td>$ 141,8</td><td class="bad">49,7%</td>
-              </tr>
-              <tr>
-                <td>Funza</td><td>$ 49,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 20,9</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Facatativá</td><td>$ 59,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 27,9</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Villeta</td><td>$ 37,2</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 28,3</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Ubaté</td><td>$ 52,2</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 20,0</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>La Mesa</td><td>$ 26,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 16,3</td><td>$ 3,4</td><td class="ok">476,7%</td>
-              </tr>
-              <tr>
-                <td>Fusagasugá</td><td>$ 8,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 7,1</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>La Vega</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,1</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>La Palma</td><td>$ 0,0</td><td>$ 0,0</td><td>—</td><td>$ 0,1</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr class="region">
-                <td>Boyacá</td><td>$ 46,9</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 24,3</td><td>$ 2,9</td><td class="ok">845,0%</td>
-              </tr>
-              <tr>
-                <td>Duitama</td><td>$ 33,5</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 16,3</td><td>$ 2,9</td><td class="ok">567,7%</td>
-              </tr>
-              <tr>
-                <td>Chiquinquirá</td><td>$ 12,8</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 7,0</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-              <tr>
-                <td>Puerto Boyacá</td><td>$ 0,6</td><td>$ 0,0</td><td class="ok">100,0%</td><td>$ 0,9</td><td>$ 0,0</td><td class="ok">100,0%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Informe de alta gerencia · Otros ingresos operacionales · Sede Cundinamarca y Boyacá · <b>Acumulado I + II Semestre 2026</b>, corte al 9 de noviembre de 2026 · Cifras en millones de pesos
-</footer>
-</div>
-</div>
-
+<script>
+(function(){
+  function f1(x){ var a=Math.abs(x), s=a.toFixed(1).split('.'); s[0]=s[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.'); return s[0]+','+s[1]; }
+  function neg(x){ return x<0 && Math.round(Math.abs(x)*10)!==0; }
+  function money(x){ return (neg(x)?'-$ ':'$ ')+f1(x); }
+  function pctv(r,m){ if(Math.abs(m)<1e-9) return r>0.04?100:null; return r/m*100; }
+  function pc(p){ return (neg(p)?'-':'')+f1(p)+'%'; }
+  function cls(p){ return p===null?'':(Math.round(p*10)/10>=100?'ok':'bad'); }
+  function sf1(x){ return (neg(x)?'-':'')+f1(x); }
+  function f0(x){ return Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+  function nice(mx){ if(mx<=0) return 100; var raw=mx*1.04/4, mag=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)), ms=[1,1.5,2,2.5,3,4,5,6,8,10];
+    for(var i=0;i<ms.length;i++){ if(raw<=ms[i]*mag+1e-12) return ms[i]*mag*4; } return 40*mag; }
+  function tick(axis,i){ if(i===0) return '$0'; var v=axis*i/4; return '$'+(axis<20?f1(v):f0(v))+'M'; }
+  function renderChart(card, pl, cats){
+    var cc=document.getElementById('chart-'+card.id.replace('sel-','')); if(!cc||!cats.length) return;
+    var vis=cats.filter(function(c){ var v=pl.v[c[0]]; return Math.abs(v[0])>1e-9||Math.abs(v[1])>1e-9; });
+    var mx=0; vis.forEach(function(c){ var v=pl.v[c[0]]; mx=Math.max(mx,v[0],v[1]); });
+    var axis=nice(mx), h='';
+    for(var i=0;i<=4;i++) h+='<div class="gridline" style="bottom:'+(i*25)+'%;"><span class="gl-label">'+tick(axis,i)+'</span></div>';
+    vis.forEach(function(c){ var v=pl.v[c[0]], p=pctv(v[0],v[1]), b=p===null?'':(Math.round(p*10)/10>=100?'ok':'bad');
+      h+='<div class="bc-col">'+(p===null?'':'<span class="bc-badge '+b+'">'+pc(p)+'</span>')+
+        '<div class="bc-bars"><div class="bc-bar" style="height:'+Math.max(v[0]/axis*100,0).toFixed(2)+'%; background:'+c[2]+';"><span class="bc-val">'+sf1(v[0])+'</span></div>'+
+        '<div class="bc-bar" style="height:'+Math.max(v[1]/axis*100,0).toFixed(2)+'%; background:'+c[3]+';"><span class="bc-val">'+sf1(v[1])+'</span></div></div>'+
+        '<div class="bc-label">'+c[1]+'</div></div>'; });
+    var bc=cc.querySelector('.barchart'); bc.style.gridTemplateColumns='repeat('+Math.max(vis.length,1)+', 1fr)'; bc.innerHTML=h;
+    cc.querySelector('[data-f=ctitle]').textContent=pl.label;
+  }
+  function row(cls_, label, r, m){
+    var p=pctv(r,m), c=cls(p);
+    var falta=Math.max(m-r,0);
+    return '<tr class="'+cls_+'"><td>'+label+'</td><td>'+money(r)+'</td><td>'+money(m)+'</td><td'+(c?' class="'+c+'"':'')+'>'+(p===null?'—':pc(p))+'</td><td>'+money(falta)+'</td></tr>';
+  }
+  document.querySelectorAll('.sel-card').forEach(function(card){
+    var data=JSON.parse(card.querySelector('script.sel-data').textContent);
+    var byK={}; data.places.forEach(function(p){ byK[p.k]=p; });
+    var totalReal=0; (function(){ var t=byK['Total']; data.struct.forEach(function(g){ g[1].forEach(function(c){ totalReal+=t.v[c[0]][0]; }); }); })();
+    function render(k){
+      var pl=byK[k], tr=0, tm=0, html='';
+      data.struct.forEach(function(g){
+        var sr=0, sm=0, inner='';
+        g[1].forEach(function(c){ var v=pl.v[c[0]]; sr+=v[0]; sm+=v[1]; if(Math.abs(v[0])>1e-9||Math.abs(v[1])>1e-9) inner+=row('', c[1], v[0], v[1]); });
+        if(inner) html+='<tr class="hd"><td colspan="5">'+g[0]+'</td></tr>'+inner+row('st','Subtotal '+g[0], sr, sm);
+        tr+=sr; tm+=sm;
+      });
+      html+=row('tt','Total ingresos', tr, tm);
+      card.querySelector('[data-f=tbody]').innerHTML=html;
+      renderChart(card, pl, data.chart||[]);
+      var p=pctv(tr,tm), pp=p===null?0:Math.min(Math.max(p,0),100);
+      card.querySelector('.donut').style.background='conic-gradient(var(--blue-600) 0% '+pp.toFixed(2)+'%, #e7ecf5 '+pp.toFixed(2)+'% 100%)';
+      var pe=card.querySelector('[data-f=pct]'); pe.textContent=p===null?'—':pc(p); pe.style.fontSize=pe.textContent.length>7?'27px':'';
+      card.querySelector('[data-f=name]').textContent=pl.label;
+      var share=totalReal>0?tr/totalReal*100:0;
+      card.querySelector('[data-f=sub]').innerHTML='Real <b>$'+f1(tr)+'M</b> de meta <b>$'+f1(tm)+'M</b>'+
+        (tm>tr?' · faltan <b>$'+f1(tm-tr)+'M</b>':' · superó la meta en <b>$'+f1(tr-tm)+'M</b>')+
+        (k==='Total'?'':'<br>Participación en el ingreso real de la Sede: <b>'+pc(share)+'</b>');
+      card.querySelectorAll('.chip').forEach(function(b){ var on=b.getAttribute('data-k')===k; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on?'true':'false'); });
+    }
+    card.querySelectorAll('.chip').forEach(function(b){ b.addEventListener('click', function(){ render(b.getAttribute('data-k')); }); });
+    render('Total');
+  });
+})();
+</script>
 </body>
 </html>
